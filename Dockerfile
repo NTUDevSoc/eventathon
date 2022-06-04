@@ -4,11 +4,11 @@ EXPOSE 80
 EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
-WORKDIR /src
-COPY ["DevSoc.Eventathon/DevSoc.Eventathon.csproj", "DevSoc.Eventathon/"]
-RUN dotnet restore "DevSoc.Eventathon/DevSoc.Eventathon.csproj"
+WORKDIR /build
+COPY ["src/DevSoc.Eventathon/DevSoc.Eventathon.csproj", "src/DevSoc.Eventathon/"]
+RUN dotnet restore "src/DevSoc.Eventathon/DevSoc.Eventathon.csproj"
 COPY . .
-WORKDIR "/src/DevSoc.Eventathon"
+WORKDIR "/build/src/DevSoc.Eventathon"
 RUN dotnet build "DevSoc.Eventathon.csproj" -c Release -o /app/build
 
 FROM build AS publish
