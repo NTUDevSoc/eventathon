@@ -4,17 +4,11 @@ EXPOSE 80
 EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
-WORKDIR /build
-
-RUN apt-get update -yq 
-RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
-RUN apt-get install -yq nodejs
-RUN npm install -g npm
-
-COPY ["src/DevSoc.Eventathon/DevSoc.Eventathon.csproj", "src/DevSoc.Eventathon/"]
-RUN dotnet restore "src/DevSoc.Eventathon/DevSoc.Eventathon.csproj"
+WORKDIR /src
+COPY ["DevSoc.Eventathon/DevSoc.Eventathon.csproj", "DevSoc.Eventathon/"]
+RUN dotnet restore "DevSoc.Eventathon/DevSoc.Eventathon.csproj"
 COPY . .
-WORKDIR "/build/src/DevSoc.Eventathon"
+WORKDIR "/src/DevSoc.Eventathon"
 RUN dotnet build "DevSoc.Eventathon.csproj" -c Release -o /app/build
 
 FROM build AS publish
