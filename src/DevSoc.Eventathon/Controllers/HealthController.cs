@@ -3,11 +3,11 @@
 namespace DevSoc.Eventathon.Controllers;
 
 [ApiController]
-public class HealthController
+public class HealthController 
 {
-    [HttpGet("/health")]
-    public Task<IActionResult> Get()
+    [HttpGet("api/health")]
+    public Task<OkResult> GetHealth()
     {
-        return Task.FromResult(new OkResult() as IActionResult);
+        return Task.FromResult(new OkResult());
     }
 }

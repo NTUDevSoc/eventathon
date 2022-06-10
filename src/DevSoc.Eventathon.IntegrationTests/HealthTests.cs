@@ -17,7 +17,7 @@ public class HealthTests : IClassFixture<EventathonServiceFixture>
     [Fact]
     public async Task WhenTheServiceIsLive_ThenTheHealthEndpointReturnsHealthy()
     {
-        var result = await _client.GetAsync("/health");
+        var result = await _client.GetAsync("/api/health");
         Assert.Equal(HttpStatusCode.OK, result.StatusCode);
     }
 }
