@@ -5,7 +5,7 @@ import './NavMenu.css';
 
 export const NavMenu = () => {
   const [isNavbarCollapsed, setIsNavbarCollapsed] = useState(true);
-  const toggleNavbar = useCallback(() => setIsNavbar(!isNavbarCollapsed), [isNavbarCollapsed, setIsNavbarCollapsed])
+  const toggleNavbar = useCallback(() => setIsNavbarCollapsed(!isNavbarCollapsed), [isNavbarCollapsed, setIsNavbarCollapsed])
 
   return (
     <header>
@@ -20,6 +20,9 @@ export const NavMenu = () => {
               </NavItem>
               <NavItem>
                 <NavLink tag={Link} className="text-dark" to="/counter">Counter</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink tag={Link} className="text-dark" to="/calendar">Calendar</NavLink>
               </NavItem>
             </ul>
           </Collapse>
