@@ -3,11 +3,11 @@
 namespace DevSoc.Eventathon.Controllers;
 
 [ApiController]
-public class CalController
+public class CalendarController : ControllerBase
 {
     [HttpGet("api/calendar")]
 
-    public Task<OkResult> GetCal()
+    public Task<OkResult> GetCalendar()
     {
         /* more JSON, probably! */
         return Task.FromResult(new OkResult());

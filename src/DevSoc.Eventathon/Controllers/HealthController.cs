@@ -3,7 +3,7 @@
 namespace DevSoc.Eventathon.Controllers;
 
 [ApiController]
-public class HealthController 
+public class HealthController : ControllerBase
 {
     [HttpGet("api/health")]
     public Task<OkResult> GetHealth()

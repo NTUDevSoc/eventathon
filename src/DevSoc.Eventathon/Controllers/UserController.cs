@@ -3,7 +3,7 @@
 namespace DevSoc.Eventathon.Controllers;
 
 [ApiController]
-public class UserController 
+public class UserController : ControllerBase
 {
     [HttpGet("api/user")]
     public Task<OkResult> GetUser()
