@@ -36,7 +36,8 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.environmentSetup"
+    "settings.editor.selected.configurable": "preferences.environmentSetup",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RunManager" selected=".NET Launch Settings Profile.DevSoc.Eventathon">
@@ -87,6 +88,7 @@
       <workItem from="1654625865479" duration="883000" />
       <workItem from="1654712924080" duration="897000" />
       <workItem from="1654792390377" duration="1258000" />
+      <workItem from="1654955068697" duration="459000" />
     </task>
     <servers />
   </component>
