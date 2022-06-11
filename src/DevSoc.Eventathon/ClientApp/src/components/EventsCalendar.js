@@ -7,7 +7,7 @@ import axios from "axios";
 
 const localizer = momentLocalizer(moment);
 
-const SendEvent = (givenName, givenStart, givenEnd) => {
+const CreateEvent = (givenName, givenStart, givenEnd) => {
     const element = document.querySelector('#post-request .article-id');
     const article = {
         name: givenName,
@@ -27,7 +27,7 @@ export const EventsCalendar = () => {
             if (title) {
                 setEvents((prev) => [...prev, { start, end, title }])
             }
-            SendEvent(title, start, end);
+            CreateEvent(title, start, end);
         },
         [setEvents]
     )
