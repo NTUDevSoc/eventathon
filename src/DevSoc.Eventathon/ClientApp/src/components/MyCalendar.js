@@ -4,9 +4,29 @@ import { Calendar, momentLocalizer } from 'react-big-calendar'
 import moment from 'moment'
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 
-// Setup the localizer by providing the moment (or globalize, or Luxon) Object
-// to the correct localizer.
-const localizer = momentLocalizer(moment) // or globalize Localizer
+const localizer = momentLocalizer(moment)
+
+/*const myEventsList = [
+    {
+        "title": "on DST",
+        "start": "2022-11-06T01:00:00.000Z",
+        "end": "2022-11-06T03:30:00.000Z",
+        "allDay": false
+    },
+    {
+        "title": "crosses DST",
+        "start": "2022-06-11T01:00:00.000Z",
+        "end": "2022-11-06T06:30:00.000Z",
+        "allDay": false
+    },
+    {
+        "title": "After DST",
+        "start": "2022-11-06T07:00:00.000Z",
+        "end": "2022-11-06T07:45:00.000Z",
+        "allDay": false
+    }
+]*/
+
 
 export const MyCalendar = () => {
     return (
