@@ -1,14 +1,23 @@
+using DevSoc.Eventathon.Calendars;
+using DevSoc.Eventathon.Data;
+
 namespace DevSoc.Eventathon;
 
 internal class Program
 {
-    internal static void Main(string[] args)
+    internal static async Task Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container.
         builder.Services.AddControllers();
-
+        builder.Services.Configure<DatabaseOptions>(options =>
+        {
+            options.ConnectionString = builder.Configuration.GetConnectionString(Databases.Eventathon);
+        });
+        
+        builder.Services.AddCalendars(builder.Configuration);
+        
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.
@@ -22,6 +31,8 @@ internal class Program
         {
             app.UseDeveloperExceptionPage();
         }
+
+        await DatabaseMigrations.Run(app.Configuration.GetConnectionString(Databases.Eventathon));
 
         app.UseHttpsRedirection();
         app.UseAuthorization();
