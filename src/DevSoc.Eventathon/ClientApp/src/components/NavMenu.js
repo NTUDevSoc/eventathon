@@ -5,7 +5,7 @@ import './NavMenu.css';
 
 export const NavMenu = () => {
   const [isNavbarCollapsed, setIsNavbarCollapsed] = useState(true);
-  const toggleNavbar = useCallback(() => setIsNavbar(!isNavbarCollapsed), [isNavbarCollapsed, setIsNavbarCollapsed])
+  const toggleNavbar = useCallback(() => setIsNavbarCollapsed(!isNavbarCollapsed), [isNavbarCollapsed, setIsNavbarCollapsed])
 
   return (
     <header>
