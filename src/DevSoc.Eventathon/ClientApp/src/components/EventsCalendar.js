@@ -7,28 +7,16 @@ import axios from "axios";
 
 const localizer = momentLocalizer(moment);
 
-const myEventsList = [
-    {
-        id: 0,
-        title: 'All Day Event',
-        allDay: true,
-        start: new Date(2022, 5, 11),
-        end: new Date(2022, 5, 12),
-      },
-      {
-        id: 1,
-        title: 'Long Event',
-        start: new Date(2022, 5, 10),
-        end: new Date(2022, 5, 13),
-      },
-      {
-        id: 2,
-        title: 'Short event',
-        start: new Date(2022, 5, 11, 11, 0, 0),
-        end: new Date(2022, 5, 11, 14, 0, 0),
-      }
-];
-
+const CreateEvent = (givenName, givenStart, givenEnd) => {
+    const element = document.querySelector('#post-request .article-id');
+    const article = {
+        name: givenName,
+        description: 'test',
+        start: givenStart,
+        end: givenEnd
+    };
+    axios.post('api/events', article).then(response => element.innerHTML = response.data.id);
+}
 
 export const EventsCalendar = () => {
     const [myEventsList, setEvents] = useState(events)
@@ -36,14 +24,10 @@ export const EventsCalendar = () => {
     const handleSelectSlot = useCallback(
         ({ start, end }) => {
             const title = window.prompt('Enter event name: ')
-            console.log(start)
             if (title) {
                 setEvents((prev) => [...prev, { start, end, title }])
             }
-            
-            const element = document.querySelector('#post-request .article-id');
-            const article = { example: 'example data' };
-            axios.post('api/test', article).then(response => element.innerHTML = response.data.id);
+            CreateEvent(title, start, end);
         },
         [setEvents]
     )
