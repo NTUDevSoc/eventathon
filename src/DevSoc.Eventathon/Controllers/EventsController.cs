@@ -7,12 +7,19 @@ namespace DevSoc.Eventathon.Controllers;
 public class EventsController : ControllerBase
 {
     [HttpGet("api/events/{id}")]
-    public async Task<IActionResult> GetEvents([FromRoute] string id)
+    public async Task<IActionResult> GetEvent([FromRoute] string id)
     {
         // todo
         return new OkResult();
     }
-    
+
+    [HttpGet("api/events")]
+    public async Task<IActionResult> GetEvents()
+    {
+        // todo
+        return new OkResult();
+    }
+
     [HttpPost("api/events")]
     public async Task<IActionResult> CreateEvent([FromBody] EventDefinition definition)
     {
