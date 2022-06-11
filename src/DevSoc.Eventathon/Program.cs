@@ -1,3 +1,4 @@
+using DevSoc.Eventathon.Calendars;
 using DevSoc.Eventathon.Data;
 
 namespace DevSoc.Eventathon;
@@ -14,6 +15,8 @@ internal class Program
         {
             options.ConnectionString = builder.Configuration.GetConnectionString(Databases.Eventathon);
         });
+        
+        builder.Services.AddCalendars(builder.Configuration);
         
         var app = builder.Build();
 

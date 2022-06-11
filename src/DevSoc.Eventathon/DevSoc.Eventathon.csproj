@@ -30,7 +30,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DevSoc.Eventathon.Data\DevSoc.Eventathon.Data.csproj" />
+      <ProjectReference Include="..\DevSoc.Eventathon.Calendars\DevSoc.Eventathon.Calendars.csproj" />
+      <ProjectReference Include="..\DevSoc.Eventathon.Users\DevSoc.Eventathon.Users.csproj" />
     </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

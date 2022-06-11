@@ -4,17 +4,23 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <RootNamespace>DevSoc.Eventathon.Data</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="Dapper" Version="2.0.123" />
+      <PackageReference Include="Dapper.Contrib" Version="2.0.78" />
       <PackageReference Include="dbup-postgresql" Version="4.6.3" />
-      <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
       <PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
       <PackageReference Include="Npgsql" Version="6.0.4" />
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Models" />
+      <None Remove="Migrations\Script0001-AddEvents.sql" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Migrations" />
     </ItemGroup>
 
 </Project>
