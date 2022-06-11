@@ -3,11 +3,13 @@
 namespace DevSoc.Eventathon.Controllers;
 
 [ApiController]
-public class HealthController : ControllerBase
+public class CalendarController : ControllerBase
 {
-    [HttpGet("api/health")]
-    public Task<OkResult> GetHealth()
+    [HttpGet("api/calendar")]
+
+    public Task<OkResult> GetCalendar()
     {
+        /* more JSON, probably! */
         return Task.FromResult(new OkResult());
     }
 }
