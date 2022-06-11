@@ -16,6 +16,8 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/652f85f9137d45199e952ef4de6098872dc00/72/62041b1b/CalendarEvent.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/cc5319042d2c4e208645dfcbd39e6cae9600/ba/0844fd3f/Client.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/cc5319042d2c4e208645dfcbd39e6cae9600/f2/7ccdbef8/IClient.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/649ef811857fbc61d6bbf9273322f28fb54cb196dbbbd35a474eded225a2234d/NpgsqlConnection.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/DevSoc.Eventathon/Program.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -75,6 +77,38 @@
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/DevSoc.Eventathon.Calendars/EventsRepository.cs</url>
+          <line>18</line>
+          <properties documentPath="E:\Projects\eventathon\src\DevSoc.Eventathon.Calendars\EventsRepository.cs" initialLine="18" containingFunctionPresentation="method 'GetCalendars'">
+            <startOffsets>
+              <option value="508" />
+            </startOffsets>
+            <endOffsets>
+              <option value="534" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/cc5319042d2c4e208645dfcbd39e6cae9600/ba/0844fd3f/Client.cs</url>
+          <line>40</line>
+          <properties documentPath="C:\Users\Luke\AppData\Roaming\JetBrains\Rider2022.1\resharper-host\DecompilerCache\decompiler\cc5319042d2c4e208645dfcbd39e6cae9600\ba\0844fd3f\Client.cs" initialLine="40" containingFunctionPresentation="method 'GetCalendarsAsync'">
+            <startOffsets>
+              <option value="1208" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1242" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
     <select />

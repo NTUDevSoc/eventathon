@@ -4,7 +4,7 @@ namespace DevSoc.Eventathon.Data;
 
 public static class DependencyInjectionExtensions
 {
-    public static IServiceCollection AddData(this IServiceCollection services)
+    public static IServiceCollection AddUsers(this IServiceCollection services)
     {
         return services.AddTransient<IConnectionManager, PostgresSQLConnectionManager>();
     }

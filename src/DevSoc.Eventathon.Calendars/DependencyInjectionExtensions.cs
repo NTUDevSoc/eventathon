@@ -11,18 +11,16 @@ public static class DependencyInjectionExtensions
     public static IServiceCollection AddCalendars(this IServiceCollection services, IConfiguration configuration)
     {
         var calendarConfigurationSection = configuration.GetRequiredSection("Calendar");
-        
-        services.Configure<CalendarOptions>(options =>
-        {
-            options.CalendarUrl = calendarConfigurationSection["Url"];
-            options.Username = calendarConfigurationSection["Username"];
-            options.Password = calendarConfigurationSection["Password"];
-        });
 
-        return services.AddTransient<IClient, Client>(provider =>
-        {
-            var calendarOptions = provider.GetRequiredService<CalendarOptions>();
-            return new Client(calendarOptions.CalendarUri, calendarOptions.Username, calendarOptions.Password);
-        });
+        return services
+            .AddTransient<IClient, Client>(provider =>
+            {
+                var calendarUrl = calendarConfigurationSection["Url"];
+                var username = calendarConfigurationSection["Username"];
+                var password = calendarConfigurationSection["Password"];
+                
+                return new Client(new Uri(calendarUrl), username, password);
+            })
+            .AddTransient<IEventsRepository, EventsRepository>();
     }
 }
