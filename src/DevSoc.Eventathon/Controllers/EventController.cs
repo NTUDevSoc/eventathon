@@ -4,8 +4,8 @@ namespace DevSoc.Eventathon.Controllers;
 [ApiController]
 public class EventController : ControllerBase
 {
-    [HttpGet("api/test")]
-    public Task<OkResult> GetEvent()
+    [HttpPost("api/test")]
+    public Task<OkResult> CreateEvent()
     {
         return Task.FromResult(new OkResult());
     }

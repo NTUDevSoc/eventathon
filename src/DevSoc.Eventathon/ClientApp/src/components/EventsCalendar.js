@@ -7,7 +7,11 @@ import axios from "axios";
 
 const localizer = momentLocalizer(moment);
 
-
+const SendEvent = () => {
+    const element = document.querySelector('#post-request .article-id');
+    const article = { example: 'example data' };
+    axios.post('api/test', article).then(response => element.innerHTML = response.data.id);
+}
 
 export const EventsCalendar = () => {
     const [myEventsList, setEvents] = useState(events)
@@ -15,14 +19,10 @@ export const EventsCalendar = () => {
     const handleSelectSlot = useCallback(
         ({ start, end }) => {
             const title = window.prompt('Enter event name: ')
-            console.log(start)
             if (title) {
                 setEvents((prev) => [...prev, { start, end, title }])
             }
-            
-            const element = document.querySelector('#post-request .article-id');
-            const article = { example: 'example data' };
-            axios.post('api/test', article).then(response => element.innerHTML = response.data.id);
+            SendEvent();
         },
         [setEvents]
     )
