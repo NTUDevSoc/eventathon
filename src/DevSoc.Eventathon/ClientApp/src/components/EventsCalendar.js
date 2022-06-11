@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+﻿import React from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
@@ -17,7 +17,7 @@ const myEventsList = [
         id: 1,
         title: 'Long Event',
         start: new Date(2022, 5, 10),
-        end: new Date(2015, 5, 13),
+        end: new Date(2022, 5, 13),
       },
       {
         id: 2,
