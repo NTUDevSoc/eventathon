@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-
 namespace DevSoc.Eventathon.Controllers;
 
 [ApiController]
-public class HealthController : ControllerBase
+public class EventController : ControllerBase
 {
-    [HttpGet("api/health")]
-    public Task<OkResult> GetHealth()
+    [HttpGet("api/test")]
+    public Task<OkResult> GetEvent()
     {
         return Task.FromResult(new OkResult());
     }
 }
+
