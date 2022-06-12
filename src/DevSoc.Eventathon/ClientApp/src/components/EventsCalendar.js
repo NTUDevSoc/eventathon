@@ -1,8 +1,8 @@
-﻿import React, { useState, useCallback } from 'react'
+﻿import React, { useState, useCallback } from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-import events from '../resources/events'
+import events from '../resources/events';
 import axios from "axios";
 
 import { useHistory } from "react-router-dom";
@@ -42,7 +42,13 @@ export const EventsCalendar = () => {
 
             const attending = window.confirm("You are about to register your attendance for this event");
             if (attending) {
-                history.push("/attendance")
+                history.push(
+                    {
+                        pathname: "/attendance", 
+                        state: {"givenTitle": event.title,"givenDescription": event.description,
+                            "givenStart": event.start, "givenEnd": event.end}
+                    }
+                )
             }
         },[]
     )
