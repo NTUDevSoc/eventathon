@@ -1,4 +1,6 @@
-﻿using DevSoc.Eventathon.Calendars.Models;
+﻿using CalDAV.NET.Interfaces;
+using DevSoc.Eventathon.Calendars.Models;
+using Ical.Net;
 using ICalDavClient = CalDAV.NET.Interfaces.IClient;
 
 namespace DevSoc.Eventathon.Calendars;
@@ -11,9 +13,39 @@ public class EventsRepository : IEventsRepository
     {
         _calDavClient = calDavClient;
     }
-    
-    public Task<string> CreateEvent(EventDefinition definition)
+
+    public async Task<string> CreateEvent(EventDefinition definition)
     {
-        throw new NotImplementedException();
+        var calendarToUse = await _calDavClient.GetDefaultCalendarAsync();
+        var eventCreated = calendarToUse.CreateEvent(definition.Name, definition.Start, definition.End);
+
+        return eventCreated.Uid;
+    }
+
+    public async Task<bool> DeleteEvent(string uid)
+    {
+        var calendarToUse = await _calDavClient.GetDefaultCalendarAsync();
+        var eventToDel = calendarToUse.Events.FirstOrDefault(@event => @event.Uid == uid);
+        if (eventToDel != null)
+        {
+            calendarToUse.DeleteEvent(eventToDel);
+            return true;
+        }
+
+        return false;
+    }
+
+    public async Task<string> EditEvent(string uid, EventDefinition newDefinition)
+    {
+        var calendarToUse = await _calDavClient.GetDefaultCalendarAsync();
+        var eventToEdit = calendarToUse.Events.FirstOrDefault(@event => @event.Uid == uid);
+        if (eventToEdit != null)
+        {
+            calendarToUse.DeleteEvent(eventToEdit);
+            eventToEdit = calendarToUse.CreateEvent(newDefinition.Name, newDefinition.Start, newDefinition.End);
+            return eventToEdit.Uid;
+        }
+
+        return null;
     }
 }

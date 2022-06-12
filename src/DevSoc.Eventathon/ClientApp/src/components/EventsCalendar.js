@@ -1,9 +1,11 @@
-﻿import React, { useState, useCallback } from 'react'
+﻿import React, { useState, useCallback } from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-import events from '../resources/events'
+import events from '../resources/events';
 import axios from "axios";
+
+import { useHistory } from "react-router-dom";
 
 const localizer = momentLocalizer(moment);
 
@@ -20,6 +22,7 @@ const CreateEvent = (givenName, givenDescription, givenStart, givenEnd) => {
 
 export const EventsCalendar = () => {
     const [myEventsList, setEvents] = useState(events)
+    const history = useHistory();
     
     const handleSelectSlot = useCallback(
         ({ start, end}) => {
@@ -34,8 +37,20 @@ export const EventsCalendar = () => {
     )
 
     const handleSelectEvent = useCallback(
-        (event) => window.alert(event.description),
-        []
+        (event) => {
+            window.alert(event.description)
+
+            const attending = window.confirm("You are about to register your attendance for this event");
+            if (attending) {
+                history.push(
+                    {
+                        pathname: "/attendance", 
+                        state: {"givenTitle": event.title,"givenDescription": event.description,
+                            "givenStart": event.start, "givenEnd": event.end}
+                    }
+                )
+            }
+        },[]
     )
     
     return (
