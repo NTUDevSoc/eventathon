@@ -2,9 +2,11 @@
 
 public class CalendarOptions
 {
-    public string CalendarUrl { get; set; }
-    public string Username { get; set; }
-    public string Password { get; set; }
+    public string? CalendarUrl { get; set; }
+    public string? Username { get; set; }
+    public string? Password { get; set; }
 
-    public Uri CalendarUri => new Uri(CalendarUrl);
+    public Uri CalendarUri => !string.IsNullOrEmpty(CalendarUrl) ?
+        new Uri(CalendarUrl) :
+        throw new InvalidOperationException($"Couldn't cast {nameof(CalendarUrl)} to Uri, as it was null or empty");
 }
