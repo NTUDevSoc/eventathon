@@ -1,42 +1,77 @@
-﻿import React, { useState, useCallback, useEffect } from 'react'
+﻿﻿import React, { useState, useCallback, useEffect } from 'react'
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { useGetEvents, createEvent } from '../api/events-endpoint';
 import { useSWRConfig } from 'swr'
+﻿import React, { useState, useCallback } from 'react';
+import { Calendar, momentLocalizer } from 'react-big-calendar';
+import moment from 'moment';
+import 'react-big-calendar/lib/css/react-big-calendar.css';
+import events from '../resources/events';
+import axios from "axios";
+
+import { useHistory } from "react-router-dom";
 
 const localizer = momentLocalizer(moment);
+    
+const CreateEvent = (givenName, givenDescription, givenStart, givenEnd) => {
+    const element = document.querySelector('#post-request .article-id');
+    const article = {
+        name: givenName,
+        description: givenDescription,
+        start: givenStart,
+        end: givenEnd
+    };
+    axios.post('api/events', article).then(response => element.innerHTML = response.data.id);
+}
 
 export const EventsCalendar = () => {
-    const [eventList, setEvents] = useState([]);
-    const { mutate } = useSWRConfig();
+    const [eventList, setEvents] = useState(events)
+    const history = useHistory();
 
-    const { data: eventsResponse } = useGetEvents();
-    useEffect(() => {
-        if (!eventsResponse) return; 
-        setEvents(eventsResponse.events)
-    }, [eventsResponse])
+    const { mutate } = useSWRConfig();
+    // const [eventList, setEvents] = useState([]);
+
+    // const { data: eventsResponse } = useGetEvents();
+    // useEffect(() => {
+    //     if (!eventsResponse) return; 
+    //     setEvents(eventsResponse.events)
+    // }, [eventsResponse])
     
     const handleSelectSlot = useCallback(
-        ({ start, end }) => {
+        ({ start, end}) => {
             const title = window.prompt('Enter event name: ')
+            const description = window.prompt('Enter event description: ')
             if (title) {
-                setEvents((prev) => [...prev, { start, end, title }])
+                setEvents((prev) => [...prev, { description, start, end, title}])
             }
-            createEvent(title, start, end);
+            CreateEvent(title, description, start, end);
         },
         mutate('api/events')
         [setEvents]
     )
 
     const handleSelectEvent = useCallback(
-        (event) => window.alert(event.description),
-        []
+        (event) => {
+            window.alert(event.description)
+
+            const attending = window.confirm("You are about to register your attendance for this event");
+            if (attending) {
+                history.push(
+                    {
+                        pathname: "/attendance", 
+                        state: {"givenTitle": event.title,"givenDescription": event.description,
+                            "givenStart": event.start, "givenEnd": event.end}
+                    }
+                )
+            }
+        },[]
     )
 
     return (
         <div>
-            <h1>Events Calendar!</h1>
+            <h1><u>Our Events!</u></h1>
             <p>Welcome to the DevSoc events calendar. Here you can see all scheduled events. 
                 If you're a committee member you can also schedule new events from this page. 
                 If you can schedule events and you're not a committtee member this is a bug.
