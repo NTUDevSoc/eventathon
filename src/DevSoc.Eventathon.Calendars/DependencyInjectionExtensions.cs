@@ -25,4 +25,9 @@ public static class DependencyInjectionExtensions
             return new Client(calendarOptions.CalendarUri, calendarOptions.Username, calendarOptions.Password);
         });
     }
+
+    public static IServiceCollection AddEvents(this IServiceCollection services)
+    {
+        return services.AddTransient<IEventsRepository, EventsRepository>();
+    }
 }
