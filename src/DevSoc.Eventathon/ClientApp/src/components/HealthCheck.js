@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { useHealthCheck } from '../api/health/health-endpoint';
+import { checkHealth } from '../api/health-endpoint';
 
 export const HealthCheck = () => {
-  const { data: status } = useHealthCheck();
+  const { data: status } = checkHealth();
   const isLoading = useState(() => status == null, [status]);
 
   return (

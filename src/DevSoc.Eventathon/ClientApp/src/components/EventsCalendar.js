@@ -2,24 +2,17 @@
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
+import { getEvents, createEvent } from '../api/events-endpoint';
 import events from '../resources/events'
-import axios from "axios";
 
 const localizer = momentLocalizer(moment);
 
-const CreateEvent = (givenName, givenStart, givenEnd) => {
-    const element = document.querySelector('#post-request .article-id');
-    const article = {
-        name: givenName,
-        description: 'test',
-        start: givenStart,
-        end: givenEnd
-    };
-    axios.post('api/events', article).then(response => element.innerHTML = response.data.id);
-}
-
 export const EventsCalendar = () => {
     const [myEventsList, setEvents] = useState(events)
+
+    // Makes the call but returned structure doesn't include the events in an array
+    const eventList = getEvents();
+    const isLoading = useState(() => eventList == null, [eventList]);
     
     const handleSelectSlot = useCallback(
         ({ start, end }) => {
@@ -27,7 +20,7 @@ export const EventsCalendar = () => {
             if (title) {
                 setEvents((prev) => [...prev, { start, end, title }])
             }
-            CreateEvent(title, start, end);
+            createEvent(title, start, end);
         },
         [setEvents]
     )
@@ -36,7 +29,7 @@ export const EventsCalendar = () => {
         (event) => window.alert(event.title),
         []
     )
-    
+
     return (
         <div>
             <h1>Events Calendar!</h1>
