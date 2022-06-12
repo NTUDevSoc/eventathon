@@ -1,17 +1,17 @@
 import axios from 'axios';
 import useSWR from 'swr';
 
-export const useGetEvent= (id) => {
+export const useEvent= (id) => {
   const fetcher = url => axios.get(url).then((response) => response.data);
   return useSWR(`/api/events/${id}`, fetcher);
 }
   
-export const useGetEvents = () => {
+export const useEvents = () => {
   const fetcher = url => axios.get(url).then((response) => response.data);
   return useSWR('/api/events', fetcher);
 }
 
-const createEvent = (givenName, givenDescription, givenStart, givenEnd) => {
+export const createEvent = (givenName, givenDescription, givenStart, givenEnd) => {
   const element = document.querySelector('#post-request .article-id');
   const article = {
       name: givenName,

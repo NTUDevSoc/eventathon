@@ -2,7 +2,7 @@
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-import { useGetEvents, createEvent } from '../api/events-endpoint';
+import { useEvents, createEvent } from '../api/events-endpoint';
 import { useSWRConfig } from 'swr'
 import events from '../resources/events';
 import axios from "axios";
@@ -18,7 +18,7 @@ export const EventsCalendar = () => {
     const { mutate } = useSWRConfig();
     const [realEventList, setRealEvents] = useState([]);
 
-    const { data: eventsResponse } = useGetEvents();
+    const { data: eventsResponse } = useEvents();
     useEffect(() => {
         if (!eventsResponse) return; 
         setRealEvents(eventsResponse.events)
