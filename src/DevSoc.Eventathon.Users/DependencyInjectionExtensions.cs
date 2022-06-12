@@ -12,7 +12,7 @@ public static class DependencyInjectionExtensions
         return services
             .Configure<SecurityOptions>(configuration.GetSection(SecurityOptions.AppSettingsSection))
             .AddTransient<IPasswordHasher, Pbkdf2PasswordHasher>()
-            .AddTransient<IUsersRepository, IUsersRepository>()
+            .AddTransient<IUsersRepository, UsersRepository>()
             .AddTransient<IUsersService, UsersService>()
             .AddTransient<IAuthenticationService, AuthenticationService>();
     }

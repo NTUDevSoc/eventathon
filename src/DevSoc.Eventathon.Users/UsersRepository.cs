@@ -1,14 +1,15 @@
-﻿using Dapper.Contrib.Extensions;
+﻿using Dapper;
+using Dapper.Contrib.Extensions;
 using DevSoc.Eventathon.Data.Models;
 using DevSoc.Eventathon.Data.Security.Encryption;
 
 namespace DevSoc.Eventathon.Data;
 
-public class UserRepository : IUsersRepository
+public class UsersRepository : IUsersRepository
 {
     private readonly IConnectionManager _connectionManager;
 
-    public UserRepository(IConnectionManager connectionManager)
+    public UsersRepository(IConnectionManager connectionManager)
     {
         _connectionManager = connectionManager;
     }
@@ -23,7 +24,14 @@ public class UserRepository : IUsersRepository
         using var connection = await _connectionManager.Open();
         using var transaction = connection.BeginTransaction();
 
-        await connection.InsertAsync(user);
+        var insertQuery = @"
+        INSERT INTO public.users
+        (""Id"", ""Username"", ""HashedPassword"", ""Salt"")
+        VALUES(@id, @username, @hashedPassword, @salt);";
+
+        await connection.ExecuteAsync(insertQuery, user);
+        transaction.Commit();
+        
         return user.Id;
     }
     

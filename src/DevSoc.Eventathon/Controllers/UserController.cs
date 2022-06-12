@@ -26,6 +26,6 @@ public class UserController : ControllerBase
     public async Task<IActionResult> CreateUser([FromBody] UserDefinition definition)
     {
         var userId = await _usersService.CreateUser(definition);
-        return Created(new Uri($"api/users/{userId}"), userId);
+        return Ok(userId);
     }
 }
