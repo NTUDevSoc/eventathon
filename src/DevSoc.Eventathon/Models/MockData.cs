@@ -9,7 +9,7 @@ public class MockData
     {
     }
 
-    public EventResponse getSingleEvent()
+    public EventResponse GetSingleEvent()
     {
         return new EventResponse
         {
@@ -21,7 +21,7 @@ public class MockData
         };
     }
 
-    public EventResponse[] getMultipleEvents()
+    public EventResponse[] GetMultipleEvents()
     {
         return new EventResponse[]
         { 
