@@ -3,18 +3,19 @@ import axios from "axios";
 import {useHistory} from "react-router-dom";
 
 export const ConfirmAttendance = () => {
+    
+    // Retrieve parameters from the EventsCalender page
     const history = useHistory();
     const givenTitle = history.location.state.givenTitle
     const givenDescription = history.location.state.givenDescription
     const givenStart = history.location.state.givenStart
     const givenEnd = history.location.state.givenEnd
     
-    console.log(history.location.state)
-    
+    // Send a POST request representing a user registering attendance
     const SendAttendance = () => {
         const element = document.querySelector('#post-request .article-id');
         const article = {
-            userID: 107,
+            userID: 107, // Arbitrarily chosen until user accounts are created
             eventID: 162,
             name: givenTitle,
         };

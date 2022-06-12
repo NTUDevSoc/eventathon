@@ -5,15 +5,13 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { useEvents, createEvent } from '../api/events-endpoint';
 import { useSWRConfig } from 'swr'
 import events from '../resources/events';
-import axios from "axios";
-
 import { useHistory } from "react-router-dom";
 
 const localizer = momentLocalizer(moment);
 
 export const EventsCalendar = () => {
     const [eventList, setEvents] = useState(events)
-    const history = useHistory();
+    const history = useHistory(); // Used to pass data to other web pages 
 
     const { mutate } = useSWRConfig();
     const [realEventList, setRealEvents] = useState([]);
@@ -24,6 +22,7 @@ export const EventsCalendar = () => {
         setRealEvents(eventsResponse.events)
     }, [eventsResponse])
     
+    // When selecting an empty calendar slot
     const handleSelectSlot = useCallback(
         ({ start, end}) => {
             const title = window.prompt('Enter event name: ')
@@ -37,6 +36,7 @@ export const EventsCalendar = () => {
         [setEvents]
     )
 
+    // When selecting an event
     const handleSelectEvent = useCallback(
         (event) => {
             window.alert(event.description)
