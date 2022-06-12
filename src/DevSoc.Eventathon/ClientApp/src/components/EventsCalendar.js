@@ -18,10 +18,11 @@ export const EventsCalendar = () => {
     }, [eventsResponse])
     
     const handleSelectSlot = useCallback(
-        ({ start, end }) => {
+        ({ start, end}) => {
             const title = window.prompt('Enter event name: ')
+            const description = window.prompt('Enter event description: ')
             if (title) {
-                setEvents((prev) => [...prev, { start, end, title }])
+                setEvents((prev) => [...prev, { description, start, end, title}])
             }
             createEvent(title, start, end);
         },
@@ -36,7 +37,7 @@ export const EventsCalendar = () => {
 
     return (
         <div>
-            <h1>Events Calendar!</h1>
+            <h1><u>Our Events!</u></h1>
             <p>Welcome to the DevSoc events calendar. Here you can see all scheduled events. 
                 If you're a committee member you can also schedule new events from this page. 
                 If you can schedule events and you're not a committtee member this is a bug.
