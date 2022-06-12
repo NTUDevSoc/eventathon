@@ -8,15 +8,12 @@ internal class Program
     internal static async Task Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
-
-        // Add services to the container.
         builder.Services.AddControllers();
-        builder.Services.Configure<DatabaseOptions>(options =>
-        {
-            options.ConnectionString = builder.Configuration.GetConnectionString(Databases.Eventathon);
-        });
-        
-        builder.Services.AddCalDAVClient(builder.Configuration);
+
+        builder.Services
+            .AddDatabase(builder.Configuration)
+            .AddUsers(builder.Configuration)
+            .AddCalDAVClient(builder.Configuration);
         
         var app = builder.Build();
 
