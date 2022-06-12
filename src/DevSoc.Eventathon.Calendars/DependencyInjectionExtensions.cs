@@ -12,17 +12,13 @@ public static class DependencyInjectionExtensions
     {
         var calendarConfigurationSection = configuration.GetRequiredSection("Calendar");
         
-        services.Configure<CalendarOptions>(options =>
-        {
-            options.CalendarUrl = calendarConfigurationSection["Url"];
-            options.Username = calendarConfigurationSection["Username"];
-            options.Password = calendarConfigurationSection["Password"];
-        });
-
         return services.AddTransient<IClient, Client>(provider =>
         {
-            var calendarOptions = provider.GetRequiredService<CalendarOptions>();
-            return new Client(calendarOptions.CalendarUri, calendarOptions.Username, calendarOptions.Password);
+            var calendarUrl = calendarConfigurationSection["Url"];
+            var username = calendarConfigurationSection["Username"];
+            var password = calendarConfigurationSection["Password"];
+            
+            return new Client(new Uri(calendarUrl), username, password);
         });
     }
 
