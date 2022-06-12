@@ -8,7 +8,7 @@ namespace DevSoc.Eventathon.Calendars;
 
 public static class DependencyInjectionExtensions
 {
-    public static IServiceCollection AddCalendars(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection CalendarService(this IServiceCollection services, IConfiguration configuration)
     {
         var calendarConfigurationSection = configuration.GetRequiredSection("Calendar");
         

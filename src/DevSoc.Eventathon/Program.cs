@@ -16,7 +16,7 @@ internal class Program
             options.ConnectionString = builder.Configuration.GetConnectionString(Databases.Eventathon);
         });
         
-        builder.Services.AddCalendars(builder.Configuration);
+        builder.Services.CalendarService(builder.Configuration);
         
         var app = builder.Build();
 
