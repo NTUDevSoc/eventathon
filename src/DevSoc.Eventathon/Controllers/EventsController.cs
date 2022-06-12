@@ -63,5 +63,4 @@ public class EventsController : ControllerBase
 
         return Ok();
     }
-    }
 }
