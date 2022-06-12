@@ -19,7 +19,7 @@ public class EventsController : ControllerBase
     public async Task<IActionResult> GetEvent([FromRoute] string id)
     {
         // todo
-        return Ok(new MockData().getSingleEvent());
+        return Ok(new MockData().GetSingleEvent());
 
     }
 
@@ -27,7 +27,7 @@ public class EventsController : ControllerBase
     public async Task<IActionResult> GetEvents()
     {
         // todo
-        return Ok(new MockData().getMultipleEvents());
+        return Ok(new MockData().GetMultipleEvents());
     }
 
     [HttpPost("api/events")]
