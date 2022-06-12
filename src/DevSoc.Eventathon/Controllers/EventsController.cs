@@ -1,3 +1,4 @@
+using DevSoc.Eventathon.Models;
 ﻿using DevSoc.Eventathon.Calendars;
 using DevSoc.Eventathon.Calendars.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -18,14 +19,15 @@ public class EventsController : ControllerBase
     public async Task<IActionResult> GetEvent([FromRoute] string id)
     {
         // todo
-        return Ok();
+        return Ok(new MockData().getSingleEvent());
+
     }
 
     [HttpGet("api/events")]
     public async Task<IActionResult> GetEvents()
     {
         // todo
-        return Ok();
+        return Ok(new MockData().getMultipleEvents());
     }
 
     [HttpPost("api/events")]
@@ -34,7 +36,7 @@ public class EventsController : ControllerBase
         // todo: change to use ClaimsPrincipal user
         Console.WriteLine(definition.Name + definition.Start + definition.End);
         // Todo: Store name, description, start, end on CalDev 
-        return Ok();
+        return Ok(definition);
     }
 
     [HttpDelete("api/events/{uid}")]
@@ -49,7 +51,7 @@ public class EventsController : ControllerBase
 
         return Ok();
     }
-    
+
     [HttpPost("api/events/{uid}")]
     public async Task<IActionResult> EditEvent([FromRoute] string uid, [FromBody] EventDefinition definition)
     {
