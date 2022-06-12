@@ -18,11 +18,11 @@ const ConfirmAttendance = () => {
 }
 
 export const UsersEvents = () => {
-    const [myEventsList, setEvents] = useState(events)
+    const [myEventsList] = useState(events)
     
     return (
         <div>
-            <h1>My Events!</h1>
+            <h1><u>My Events!</u></h1>
 
             <button className="btn btn-primary" onClick={ConfirmAttendance}>Register Attendance</button>
             

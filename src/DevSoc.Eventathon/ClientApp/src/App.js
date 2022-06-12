@@ -6,8 +6,10 @@ import { Counter } from './components/Counter';
 import { EventsCalendar } from './components/EventsCalendar';
 import { HealthCheck } from './components/HealthCheck';
 import { UsersEvents } from './components/UsersEvents';
+import {ConfirmAttendance} from "./components/ConfirmAttendance";
 
 import './custom.css'
+
 
 export const App = () => {
   return (
@@ -16,7 +18,9 @@ export const App = () => {
       <Route path='/counter' component={Counter} />
       <Route path='/calendar' component={EventsCalendar} />  
       <Route path='/healthcheck' component={HealthCheck} />
-      <Route path='/attendance' component={UsersEvents} />
+      <Route path='/userEvents' component={UsersEvents} />
+      <Route path='/attendance' component={ConfirmAttendance} />
     </Layout>
   );
 }
+
