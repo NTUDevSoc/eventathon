@@ -1,8 +1,7 @@
-﻿using CalDAV.NET.Interfaces;
-using DevSoc.Eventathon.Calendars.Models;
+﻿using DevSoc.Eventathon.Calendars.Models;
 using Ical.Net;
 using ICalDavClient = CalDAV.NET.Interfaces.IClient;
-
+using DevSoc.Eventathon.Models;
 namespace DevSoc.Eventathon.Calendars;
 
 public class EventsRepository : IEventsRepository
@@ -14,6 +13,16 @@ public class EventsRepository : IEventsRepository
         _calDavClient = calDavClient;
     }
 
+    public async Task<EventResponse> GetEvent(string id)
+    {
+        return new MockData().GetSingleEvent();
+    }
+
+    public async Task<EventResponse[]> GetEvents()
+    {
+        return new MockData().GetMultipleEvents();
+    }
+    
     public async Task<string> CreateEvent(EventDefinition definition)
     {
         var calendarToUse = await _calDavClient.GetDefaultCalendarAsync();
