@@ -3,12 +3,12 @@ import useSWR from 'swr';
 
 export const useGetEvent= (id) => {
   const fetcher = url => axios.get(url).then((response) => response.data);
-  return useSWR(`api/events/${id}`, fetcher).data;
+  return useSWR(`/api/events/${id}`, fetcher);
 }
   
 export const useGetEvents = () => {
   const fetcher = url => axios.get(url).then((response) => response.data);
-  return useSWR('api/events', fetcher).data;
+  return useSWR('/api/events', fetcher);
 }
 
 export const createEvent = (givenName, givenStart, givenEnd) => {
@@ -19,7 +19,7 @@ export const createEvent = (givenName, givenStart, givenEnd) => {
       start: givenStart,
       end: givenEnd
   };
-  axios.post('api/events', article).then(response => element.innerHTML = response.data.id);
+  axios.post('/api/events', article).then(response => element.innerHTML = response.data.id);
 }
 
 export function useDeleteEvent() {

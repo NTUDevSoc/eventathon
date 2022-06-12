@@ -11,14 +11,16 @@ public class EventsController : ControllerBase
     public async Task<IActionResult> GetEvent([FromRoute] string id)
     {
         // todo
-        return Ok(new MockData().getSingleEvent());
+        EventRestResponse myEvent = new MockData().getSingleEvent();
+        return Ok(myEvent);
     }
 
     [HttpGet("api/events")]
     public async Task<IActionResult> GetEvents()
     {
         // todo
-        return Ok(new MockData().getMultipleEvents());
+        EventListRestResponse myEventList = new MockData().getMultipleEvents();
+        return Ok(myEventList);
     }
 
     [HttpPost("api/events")]

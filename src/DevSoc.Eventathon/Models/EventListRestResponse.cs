@@ -1,8 +1,8 @@
 ﻿using DevSoc.Eventathon.Models;
 namespace DevSoc.Eventathon.Calendars.Models;
 
-public class EventListRestResponse : EventResponse
+public class EventListRestResponse
 {
-    public EventResponse[] eventList { get; set; }
+    public EventResponse[] events { get; set; }
     
 }

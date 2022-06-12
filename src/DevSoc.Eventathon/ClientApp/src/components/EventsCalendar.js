@@ -3,12 +3,20 @@ import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { useGetEvents, createEvent } from '../api/events-endpoint';
+import { useSWRConfig } from 'swr'
 
 const localizer = momentLocalizer(moment);
 
 export const EventsCalendar = () => {
-    const [eventList, setEvents] = useState(useGetEvents().eventList);
+    const [eventList, setEvents] = useState([]);
+    const { mutate } = useSWRConfig();
 
+    const { data: eventsResponse } = useGetEvents();
+    useEffect(() => {
+        if (!eventsResponse) return; 
+        setEvents(eventsResponse.events)
+    }, [eventsResponse])
+    
     const handleSelectSlot = useCallback(
         ({ start, end }) => {
             const title = window.prompt('Enter event name: ')
@@ -17,17 +25,14 @@ export const EventsCalendar = () => {
             }
             createEvent(title, start, end);
         },
+        mutate('api/events')
         [setEvents]
     )
 
     const handleSelectEvent = useCallback(
-        (event) => window.alert(event.title),
+        (event) => window.alert(event.description),
         []
     )
-
-    if (!eventList){
-        return <p>Loading calendar...</p>
-    }
 
     return (
         <div>
@@ -37,15 +42,20 @@ export const EventsCalendar = () => {
                 If you can schedule events and you're not a committtee member this is a bug.
                 Be a good person and just don't use this immense power.</p>
             <hr></hr>
-            <Calendar
-                localizer={localizer} 
-                events={eventList}
-                startAccessor="start"
-                endAccessor="end"
-                onSelectSlot={handleSelectSlot}
-                onSelectEvent={handleSelectEvent}
-                selectable
-            />         
+            {!eventList ? 
+                <p>Loading calendar...
+                    {mutate('api/events')}
+                </p> : 
+                <Calendar
+                    localizer={localizer} 
+                    events={eventList}
+                    startAccessor="start"
+                    endAccessor="end"
+                    onSelectSlot={handleSelectSlot}
+                    onSelectEvent={handleSelectEvent}
+                    selectable
+                />   
+            }
         </div>
     );
 }
