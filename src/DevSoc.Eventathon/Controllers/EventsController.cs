@@ -1,4 +1,5 @@
 ﻿using DevSoc.Eventathon.Calendars.Models;
+using DevSoc.Eventathon.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DevSoc.Eventathon.Controllers;

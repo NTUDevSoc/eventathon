@@ -8,10 +8,10 @@ export const useGetEvent= (id) => {
   
 export const useGetEvents = () => {
   const fetcher = url => axios.get(url).then((response) => response.data);
-  return  useSWR('api/events', fetcher).data;
+  return useSWR('api/events', fetcher).data;
 }
 
-export const useCreateEvent = (givenName, givenStart, givenEnd) => {
+export const createEvent = (givenName, givenStart, givenEnd) => {
   const element = document.querySelector('#post-request .article-id');
   const article = {
       name: givenName,
