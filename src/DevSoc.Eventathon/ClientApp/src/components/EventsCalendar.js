@@ -4,10 +4,6 @@ import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { useGetEvents, createEvent } from '../api/events-endpoint';
 import { useSWRConfig } from 'swr'
-﻿import React, { useState, useCallback } from 'react';
-import { Calendar, momentLocalizer } from 'react-big-calendar';
-import moment from 'moment';
-import 'react-big-calendar/lib/css/react-big-calendar.css';
 import events from '../resources/events';
 import axios from "axios";
 
@@ -20,13 +16,13 @@ export const EventsCalendar = () => {
     const history = useHistory();
 
     const { mutate } = useSWRConfig();
-    // const [eventList, setEvents] = useState([]);
+    const [realEventList, setRealEvents] = useState([]);
 
-    // const { data: eventsResponse } = useGetEvents();
-    // useEffect(() => {
-    //     if (!eventsResponse) return; 
-    //     setEvents(eventsResponse.events)
-    // }, [eventsResponse])
+    const { data: eventsResponse } = useGetEvents();
+    useEffect(() => {
+        if (!eventsResponse) return; 
+        setRealEvents(eventsResponse.events)
+    }, [eventsResponse])
     
     const handleSelectSlot = useCallback(
         ({ start, end}) => {
