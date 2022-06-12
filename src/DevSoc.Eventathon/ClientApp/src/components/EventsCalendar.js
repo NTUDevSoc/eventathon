@@ -1,4 +1,4 @@
-﻿﻿import React, { useState, useCallback, useEffect } from 'react'
+﻿import React, { useState, useCallback, useEffect } from 'react'
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
@@ -14,17 +14,6 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 
 const localizer = momentLocalizer(moment);
-    
-const CreateEvent = (givenName, givenDescription, givenStart, givenEnd) => {
-    const element = document.querySelector('#post-request .article-id');
-    const article = {
-        name: givenName,
-        description: givenDescription,
-        start: givenStart,
-        end: givenEnd
-    };
-    axios.post('api/events', article).then(response => element.innerHTML = response.data.id);
-}
 
 export const EventsCalendar = () => {
     const [eventList, setEvents] = useState(events)
@@ -46,7 +35,7 @@ export const EventsCalendar = () => {
             if (title) {
                 setEvents((prev) => [...prev, { description, start, end, title}])
             }
-            CreateEvent(title, description, start, end);
+            createEvent(title, start, end);
         },
         mutate('api/events')
         [setEvents]
