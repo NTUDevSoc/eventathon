@@ -1,17 +1,17 @@
 import axios from 'axios';
 import useSWR from 'swr';
 
-export const getEvent= (id) => {
-  const fetcher = url => axios.get(url).then(response => response.status);
-  return useSWR(`api/events/${id}`, fetcher);
+export const useGetEvent= (id) => {
+  const fetcher = url => axios.get(url).then((response) => response.data);
+  return useSWR(`api/events/${id}`, fetcher).data;
 }
   
-export const getEvents = () => {
-  const fetcher = url => axios.get(url).then(response => response.status);
-  return useSWR('api/events', fetcher);
+export const useGetEvents = () => {
+  const fetcher = url => axios.get(url).then((response) => response.data);
+  return  useSWR('api/events', fetcher).data;
 }
 
-export const createEvent = (givenName, givenStart, givenEnd) => {
+export const useCreateEvent = (givenName, givenStart, givenEnd) => {
   const element = document.querySelector('#post-request .article-id');
   const article = {
       name: givenName,
@@ -22,6 +22,6 @@ export const createEvent = (givenName, givenStart, givenEnd) => {
   axios.post('api/events', article).then(response => element.innerHTML = response.data.id);
 }
 
-export function deleteEvent() {
+export function useDeleteEvent() {
 
 }

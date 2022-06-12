@@ -1,26 +1,21 @@
-﻿import React, { useState, useCallback } from 'react'
+﻿import React, { useState, useCallback, useEffect } from 'react'
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-import { getEvents, createEvent } from '../api/events-endpoint';
-import events from '../resources/events'
+import { useGetEvents, useCreateEvent } from '../api/events-endpoint';
 
 const localizer = momentLocalizer(moment);
 
 export const EventsCalendar = () => {
-    const [myEventsList, setEvents] = useState(events)
+    const [eventList, setEvents] = useState(useGetEvents());
 
-    // Makes the call but returned structure doesn't include the events in an array
-    const eventList = getEvents();
-    const isLoading = useState(() => eventList == null, [eventList]);
-    
     const handleSelectSlot = useCallback(
         ({ start, end }) => {
             const title = window.prompt('Enter event name: ')
             if (title) {
                 setEvents((prev) => [...prev, { start, end, title }])
             }
-            createEvent(title, start, end);
+            //useCreateEvent(title, start, end);
         },
         [setEvents]
     )
@@ -29,6 +24,8 @@ export const EventsCalendar = () => {
         (event) => window.alert(event.title),
         []
     )
+
+    console.log(JSON.stringify(eventList));
 
     return (
         <div>
@@ -40,7 +37,7 @@ export const EventsCalendar = () => {
             <hr></hr>
             <Calendar
                 localizer={localizer} 
-                events={myEventsList}
+                events={eventList}
                 startAccessor="start"
                 endAccessor="end"
                 onSelectSlot={handleSelectSlot}
