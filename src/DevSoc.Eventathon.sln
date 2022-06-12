@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevSoc.Eventathon.Users", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevSoc.Eventathon.Calendars", "DevSoc.Eventathon.Calendars\DevSoc.Eventathon.Calendars.csproj", "{432C7842-3EBE-4687-8EAB-BF0684C12191}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevSoc.Eventathon.Data", "DevSoc.Eventathon.Data\DevSoc.Eventathon.Data.csproj", "{C5AA2239-4A38-4AF7-A52E-BC936F1626F6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{432C7842-3EBE-4687-8EAB-BF0684C12191}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{432C7842-3EBE-4687-8EAB-BF0684C12191}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{432C7842-3EBE-4687-8EAB-BF0684C12191}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5AA2239-4A38-4AF7-A52E-BC936F1626F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5AA2239-4A38-4AF7-A52E-BC936F1626F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5AA2239-4A38-4AF7-A52E-BC936F1626F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5AA2239-4A38-4AF7-A52E-BC936F1626F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

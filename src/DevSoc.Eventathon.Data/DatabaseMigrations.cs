@@ -7,6 +7,8 @@ public static class DatabaseMigrations
 {
     public static async Task Run(string connectionString)
     {
+        EnsureDatabase.For.PostgresqlDatabase(connectionString);
+        
         var migrator = DeployChanges.To
                 .PostgresqlDatabase(connectionString)
                 .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly())
