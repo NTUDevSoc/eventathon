@@ -1,5 +1,4 @@
-using DevSoc.Eventathon.Models;
-﻿using DevSoc.Eventathon.Calendars;
+using DevSoc.Eventathon.Calendars;
 using DevSoc.Eventathon.Calendars.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,16 +17,15 @@ public class EventsController : ControllerBase
     [HttpGet("api/events/{id}")]
     public async Task<IActionResult> GetEvent([FromRoute] string id)
     {
-        // todo
-        return Ok(new MockData().GetSingleEvent());
-
+        EventResponse result = await _eventsRepository.GetEvent(id);
+        return Ok(result);
     }
 
     [HttpGet("api/events")]
     public async Task<IActionResult> GetEvents()
     {
-        // todo
-        return Ok(new MockData().GetMultipleEvents());
+        EventResponse[] result = await _eventsRepository.GetEvents();
+        return Ok(result);
     }
 
     [HttpPost("api/events")]

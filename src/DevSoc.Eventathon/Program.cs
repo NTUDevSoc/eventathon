@@ -13,7 +13,8 @@ internal class Program
         builder.Services
             .AddDatabase(builder.Configuration)
             .AddUsers(builder.Configuration)
-            .AddCalDAVClient(builder.Configuration);
+            .AddCalDAVClient(builder.Configuration)
+            .AddEvents();
         
         var app = builder.Build();
 
