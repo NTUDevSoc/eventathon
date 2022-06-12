@@ -5,6 +5,8 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import events from '../resources/events'
 import axios from "axios";
 
+import { useHistory } from "react-router-dom";
+
 const localizer = momentLocalizer(moment);
 
 const CreateEvent = (givenName, givenDescription, givenStart, givenEnd) => {
@@ -18,26 +20,9 @@ const CreateEvent = (givenName, givenDescription, givenStart, givenEnd) => {
     axios.post('api/events', article).then(response => element.innerHTML = response.data.id);
 }
 
-
-const ConfirmAttendance = () => {
-    const element = document.querySelector('#post-request .article-id');
-    const article = {
-        userID: 107,
-        eventID: 162,
-        name: "Arbitrarily Chosen Name Here",
-    };
-    axios.post('api/attendance', article).then(response => element.innerHTML = response.data.id);
-}
-
-const attending = () => {
-    const attending = window.confirm("Do you wish to attend this event");
-    if (attending) {
-        ConfirmAttendance();
-    } 
-}
-
 export const EventsCalendar = () => {
     const [myEventsList, setEvents] = useState(events)
+    const history = useHistory();
     
     const handleSelectSlot = useCallback(
         ({ start, end}) => {
@@ -54,7 +39,11 @@ export const EventsCalendar = () => {
     const handleSelectEvent = useCallback(
         (event) => {
             window.alert(event.description)
-            attending();
+
+            const attending = window.confirm("You are about to register your attendance for this event");
+            if (attending) {
+                history.push("/attendance")
+            }
         },[]
     )
     

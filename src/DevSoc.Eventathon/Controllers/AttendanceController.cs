@@ -11,7 +11,7 @@ public class AttendanceController : ControllerBase
     public async Task<IActionResult> ConfirmAttendance([FromBody] AttendanceDefinition definition)
     {
         // todo: change to use ClaimsPrincipal user
-        Console.WriteLine(definition.UserID + definition.EventID + definition.Name);
+        Console.WriteLine(definition.UserID + "," + definition.EventID + "," + definition.Name);
         // Todo: Store attendance along with user data 
         return new OkResult();
     }
