@@ -10,14 +10,14 @@ public class EventsController : ControllerBase
     public async Task<IActionResult> GetEvent([FromRoute] string id)
     {
         // todo
-        return new OkResult();
+        return Ok(new MockData().getSingleEvent());
     }
 
     [HttpGet("api/events")]
     public async Task<IActionResult> GetEvents()
     {
         // todo
-        return new OkResult();
+        return Ok(new MockData().getMultipleEvents());
     }
 
     [HttpPost("api/events")]
@@ -26,6 +26,6 @@ public class EventsController : ControllerBase
         // todo: change to use ClaimsPrincipal user
         Console.WriteLine(definition.Name + definition.Description + definition.Start + definition.End);
         // Todo: Store name, description, start, end on CalDev 
-        return new OkResult();
+        return Ok(definition);
     }
 }
