@@ -18,6 +18,24 @@ const CreateEvent = (givenName, givenDescription, givenStart, givenEnd) => {
     axios.post('api/events', article).then(response => element.innerHTML = response.data.id);
 }
 
+
+const ConfirmAttendance = () => {
+    const element = document.querySelector('#post-request .article-id');
+    const article = {
+        userID: 107,
+        eventID: 162,
+        name: "Arbitrarily Chosen Name Here",
+    };
+    axios.post('api/attendance', article).then(response => element.innerHTML = response.data.id);
+}
+
+const attending = () => {
+    const attending = window.confirm("Do you wish to attend this event");
+    if (attending) {
+        ConfirmAttendance();
+    } 
+}
+
 export const EventsCalendar = () => {
     const [myEventsList, setEvents] = useState(events)
     
@@ -34,8 +52,10 @@ export const EventsCalendar = () => {
     )
 
     const handleSelectEvent = useCallback(
-        (event) => window.alert(event.description),
-        []
+        (event) => {
+            window.alert(event.description)
+            attending();
+        },[]
     )
     
     return (
