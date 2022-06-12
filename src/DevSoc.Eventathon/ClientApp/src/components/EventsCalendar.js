@@ -34,7 +34,7 @@ export const EventsCalendar = () => {
     )
 
     const handleSelectEvent = useCallback(
-        (event) => window.alert(event.title),
+        (event) => window.alert(event.description),
         []
     )
     
