@@ -38,18 +38,13 @@ export const EventsCalendar = () => {
 
     const handleSelectEvent = useCallback(
         (event) => {
-            window.alert(event.description)
-
-            const attending = window.confirm("You are about to register your attendance for this event");
-            if (attending) {
-                history.push(
-                    {
-                        pathname: "/attendance", 
-                        state: {"givenTitle": event.title,"givenDescription": event.description,
-                            "givenStart": event.start, "givenEnd": event.end}
-                    }
-                )
-            }
+            history.push(
+                {
+                    pathname: "/attendance", 
+                    state: {"givenID": event.id, "givenTitle": event.title,"givenDescription": event.description,
+                        "givenStart": event.start, "givenEnd": event.end}
+                }
+            )
         },[]
     )
     
