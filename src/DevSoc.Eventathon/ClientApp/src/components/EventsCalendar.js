@@ -7,11 +7,11 @@ import axios from "axios";
 
 const localizer = momentLocalizer(moment);
 
-const CreateEvent = (givenName, givenStart, givenEnd) => {
+const CreateEvent = (givenName, givenDescription, givenStart, givenEnd) => {
     const element = document.querySelector('#post-request .article-id');
     const article = {
         name: givenName,
-        description: 'test',
+        description: givenDescription,
         start: givenStart,
         end: givenEnd
     };
@@ -22,12 +22,13 @@ export const EventsCalendar = () => {
     const [myEventsList, setEvents] = useState(events)
     
     const handleSelectSlot = useCallback(
-        ({ start, end }) => {
+        ({ start, end}) => {
             const title = window.prompt('Enter event name: ')
+            const description = window.prompt('Enter event description: ')
             if (title) {
-                setEvents((prev) => [...prev, { start, end, title }])
+                setEvents((prev) => [...prev, { description, start, end, title}])
             }
-            CreateEvent(title, start, end);
+            CreateEvent(title, description, start, end);
         },
         [setEvents]
     )
@@ -39,7 +40,7 @@ export const EventsCalendar = () => {
     
     return (
         <div>
-            <h1>Events Calendar!</h1>
+            <h1><u>Our Events!</u></h1>
             <p>Welcome to the DevSoc events calendar. Here you can see all scheduled events. 
                If you're a committee member you can also schedule new events from this page. 
                If you can schedule events and you're not a committtee member this is a bug.
