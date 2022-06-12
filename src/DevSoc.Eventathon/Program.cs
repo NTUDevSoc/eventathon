@@ -9,22 +9,11 @@ internal class Program
     {
         var builder = WebApplication.CreateBuilder(args);
         builder.Services.AddControllers();
-<<<<<<< HEAD
 
         builder.Services
             .AddDatabase(builder.Configuration)
             .AddUsers(builder.Configuration)
             .AddCalDAVClient(builder.Configuration);
-=======
-        builder.Services.Configure<DatabaseOptions>(options =>
-        {
-            options.ConnectionString = builder.Configuration.GetConnectionString(Databases.Eventathon);
-        });
-        
-        builder.Services
-            .AddEvents()
-            .AddCalendars(builder.Configuration);
->>>>>>> dd1027a8c17e3172e8fc42a5d617e9d6fc7075ac
         
         var app = builder.Build();
 
