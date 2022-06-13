@@ -6,18 +6,25 @@ export default function AccountPage() {
     const onSubmit = data => console.log(data);
 
     return (
-        <form className="register-form" onSubmit={handleSubmit(onSubmit)}>
-            <input className="form-field" placeholder="Username"
-                   {...register("Username", { required: true })}
-            />
-            <input className="form-field" placeholder="Password"
-                   type="password"
-                   {...register("Password", { required: true, minLength: 8 })}
-            />
-            <input className="form-field" placeholder="Display name"
-                   {...register("DisplayName", { required: true})}
-            />
-            <button type="submit">Submit</button>
-        </form>
+        <div>
+            <h1><u>Signup!</u></h1>
+            <form className="register-form" onSubmit={handleSubmit(onSubmit)}>
+                <input className="form-field" placeholder="Username"
+                       {...register("Username", { required: true })}
+                />
+                <input className="form-field" placeholder="Password"
+                       type="password"
+                       {...register("Password", { required: true, minLength: 8 })}
+                />
+                {errors.Password && <p> Password must contain more than seven characters</p>}
+
+                <input className="form-field" placeholder="Display name"
+                       {...register("DisplayName", { required: true})}
+                />
+                <button type="submit">Submit</button>
+            </form>
+
+            <hr></hr>
+        </div>
     );
 }
