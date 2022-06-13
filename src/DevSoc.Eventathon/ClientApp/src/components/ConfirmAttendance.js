@@ -4,6 +4,8 @@ import {useHistory} from "react-router-dom";
 
 export const ConfirmAttendance = () => {
     const history = useHistory();
+    
+    const givenID = history.location.state.givenID
     const givenTitle = history.location.state.givenTitle
     const givenDescription = history.location.state.givenDescription
     const givenStart = history.location.state.givenStart
@@ -15,7 +17,7 @@ export const ConfirmAttendance = () => {
         const element = document.querySelector('#post-request .article-id');
         const article = {
             userID: 107,
-            eventID: 162,
+            eventID: givenID,
             name: givenTitle,
         };
         axios.post('api/attendance', article).then(response => element.innerHTML = response.data.id);
@@ -25,6 +27,7 @@ export const ConfirmAttendance = () => {
         <div>
             <h1><u>Event!</u></h1>
             <ul>
+                <li> Event ID: {givenID}</li>
                 <li> Title: {givenTitle}</li>
                 <li> Description: {givenDescription}</li>
                 <li> Start: {givenStart.toString()}</li>
