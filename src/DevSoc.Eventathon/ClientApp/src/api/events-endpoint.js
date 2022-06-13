@@ -1,7 +1,7 @@
 import axios from 'axios';
 import useSWR from 'swr';
 
-export const useEvent= (id) => {
+export const useEvent = (id) => {
   const fetcher = url => axios.get(url).then((response) => response.data);
   return useSWR(`/api/events/${id}`, fetcher);
 }

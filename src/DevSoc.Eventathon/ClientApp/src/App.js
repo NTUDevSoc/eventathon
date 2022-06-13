@@ -9,6 +9,7 @@ import { UsersEvents } from './components/UsersEvents';
 import {ConfirmAttendance} from "./components/ConfirmAttendance";
 
 import './custom.css'
+import {AccountPage} from "./components/AccountPage";
 
 
 export const App = () => {
@@ -20,6 +21,7 @@ export const App = () => {
       <Route path='/healthcheck' component={HealthCheck} />
       <Route path='/userEvents' component={UsersEvents} />
       <Route path='/attendance' component={ConfirmAttendance} />
+      <Route path='/account' component={AccountPage} />
     </Layout>
   );
 }

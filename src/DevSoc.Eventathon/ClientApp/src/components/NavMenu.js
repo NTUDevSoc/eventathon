@@ -30,6 +30,9 @@ export const NavMenu = () => {
               <NavItem>
                 <NavLink tag={Link} className="text-dark" to="/userEvents">My Events</NavLink>
               </NavItem>
+              <NavItem>
+                <NavLink tag={Link} className="text-dark" to="/account">Account</NavLink>
+              </NavItem>
             </ul>
           </Collapse>
         </Container>
