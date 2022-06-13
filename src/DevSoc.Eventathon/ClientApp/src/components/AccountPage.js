@@ -1,11 +1,23 @@
-﻿import React from 'react'
+﻿import React from "react";
+import { useForm } from "react-hook-form";
 
-export const AccountPage = () => {
+export default function AccountPage() {
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const onSubmit = data => console.log(data);
 
     return (
-        <div>
-            <h1><u>Account Management!</u></h1>
-            <p> This is the accounts page</p>
-        </div>
+        <form onSubmit={handleSubmit(onSubmit)}>
+            <input placeholder="Username"
+                   {...register("Username", { required: true })}
+            />
+            <input placeholder="Password"
+                   type="password"
+                   {...register("Password", { required: true, minLength: 8 })}
+            />
+            <input placeholder="Display name"
+                   {...register("DisplayName", { required: true, minLength: 8 })}
+            />
+            <button type="submit">Submit</button>
+        </form>
     );
 }

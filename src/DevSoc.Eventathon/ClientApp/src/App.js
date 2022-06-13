@@ -9,7 +9,7 @@ import { UsersEvents } from './components/UsersEvents';
 import {ConfirmAttendance} from "./components/ConfirmAttendance";
 
 import './custom.css'
-import {AccountPage} from "./components/AccountPage";
+import AccountPage from "./components/AccountPage";
 
 
 export const App = () => {
