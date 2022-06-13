@@ -12,3 +12,15 @@ code {
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+
+.form-field {
+  margin: 10px 0 10px 0;
+  padding: 15px;
+}

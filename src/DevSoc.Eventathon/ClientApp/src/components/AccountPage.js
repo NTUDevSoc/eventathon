@@ -6,16 +6,16 @@ export default function AccountPage() {
     const onSubmit = data => console.log(data);
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <input placeholder="Username"
+        <form className="register-form" onSubmit={handleSubmit(onSubmit)}>
+            <input className="form-field" placeholder="Username"
                    {...register("Username", { required: true })}
             />
-            <input placeholder="Password"
+            <input className="form-field" placeholder="Password"
                    type="password"
                    {...register("Password", { required: true, minLength: 8 })}
             />
-            <input placeholder="Display name"
-                   {...register("DisplayName", { required: true, minLength: 8 })}
+            <input className="form-field" placeholder="Display name"
+                   {...register("DisplayName", { required: true})}
             />
             <button type="submit">Submit</button>
         </form>
