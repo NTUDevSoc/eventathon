@@ -21,7 +21,15 @@ public class UserController : ControllerBase
             Might be easier for the Node.JS frontend to handle. */
         return Task.FromResult(new OkResult());
     }
-
+    
+    
+    [HttpPost("api/login")]
+    public async Task<IActionResult> LoginUser([FromBody] UserDefinition definition)
+    {
+        Console.WriteLine("Login:\n" + definition.Username + definition.Password);
+        return Ok(definition);
+    }
+    
     [HttpPost("api/users")]
     public async Task<IActionResult> CreateUser([FromBody] UserDefinition definition)
     {
@@ -29,7 +37,7 @@ public class UserController : ControllerBase
         /*var userId = await _usersService.CreateUser(definition);
         return Ok(userId);*/
         
-        Console.WriteLine(definition.Username + definition.Password);
+        Console.WriteLine("Signup:\n" + definition.Username + definition.Password);
         return Ok(definition);
     }
 }

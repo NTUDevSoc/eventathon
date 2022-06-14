@@ -32,6 +32,14 @@ export const createUser = (givenUsername, givenPassword, givenDisplayName) => {
     axios.post('api/users', article).then(response => element.innerHTML = response.data.id);
 }
 
+export const LoginUser = (givenUsername, givenPassword) => {
+    const element = document.querySelector('#post-request .article-id');
+    const article = {
+        username: givenUsername,
+        password: givenPassword,
+    };
+    axios.post('api/login', article).then(response => element.innerHTML = response.data.id);
+}
 
 export function useDeleteEvent() {
 

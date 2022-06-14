@@ -1,13 +1,13 @@
 ﻿import React from "react";
 import { useForm } from "react-hook-form";
-import {createUser} from "../api/events-endpoint";
+import {LoginUser} from "../api/events-endpoint";
 
 export default function LoginForm() {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = (data) => {
         console.log(data);
-        // createUser(data.username, data.password)
+        LoginUser(data.username, data.password)
     }
 
     return (
