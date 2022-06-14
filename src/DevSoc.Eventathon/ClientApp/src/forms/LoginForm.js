@@ -9,7 +9,7 @@ export default function LoginForm() {
         console.log(data);
         LoginUser(data.username, data.password)
     }
-
+    
     return (
         <form className="register-form" onSubmit={handleSubmit(onSubmit)}>
             <input className="form-field" placeholder="Username"

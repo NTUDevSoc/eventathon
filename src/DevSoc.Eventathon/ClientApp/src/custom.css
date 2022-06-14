@@ -28,3 +28,7 @@ code {
   height: 70vh;
   margin-top: 30px;
 }
+
+.red-form {
+  background-color: palevioletred;
+}
