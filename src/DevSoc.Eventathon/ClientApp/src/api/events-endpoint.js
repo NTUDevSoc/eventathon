@@ -12,14 +12,14 @@ export const useEvents = () => {
 }
 
 export const createEvent = (givenName, givenDescription, givenStart, givenEnd) => {
-  const element = document.querySelector('#post-request .article-id');
-  const article = {
-      name: givenName,
-      description: givenDescription,
-      start: givenStart,
-      end: givenEnd
-  };
-  axios.post('api/events', article).then(response => element.innerHTML = response.data.id);
+    // API layer, handles nothing except POST request - 200 status code means we logged in successfully
+    const article = {
+        name: givenName,
+        description: givenDescription,
+        start: givenStart,
+        end: givenEnd
+    };
+    return axios.post('api/events', article).then(response => response.status === 200);
 }
 
 export const createUser = (username, password, givenDisplayName) => {

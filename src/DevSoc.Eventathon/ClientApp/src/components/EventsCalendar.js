@@ -2,10 +2,9 @@
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-import { useEvents, createEvent } from '../api/events-endpoint';
+import {useEvents, createEvent} from '../api/events-endpoint';
 import { useSWRConfig } from 'swr'
 import events from '../resources/events';
-import axios from "axios";
 
 import { useHistory } from "react-router-dom";
 
