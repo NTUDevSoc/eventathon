@@ -1,6 +1,4 @@
-using DevSoc.Eventathon.Calendars.Models;
-
-namespace DevSoc.Eventathon.Models;
+namespace DevSoc.Eventathon.Calendars.Models;
 
 public class MockData
 {
@@ -9,61 +7,61 @@ public class MockData
     {
     }
 
-    public EventResponse GetSingleEvent()
+    public Event GetSingleEvent()
     {
-        return new EventResponse
+        return new Event
         {
-            id = 2,
-            title = "Single mock event",
-            description = "This is a singular mock event",
-            start = DateTime.UtcNow.AddDays(-5),
-            end = DateTime.UtcNow.AddDays(-4)
+            Id = Guid.NewGuid().ToString(),
+            Title = "Single mock event",
+            Description = "This is a singular mock event",
+            Start = DateTime.UtcNow.AddDays(-5),
+            End = DateTime.UtcNow.AddDays(-4)
         };
     }
 
-    public EventResponse[] GetMultipleEvents()
+    public Event[] GetMultipleEvents()
     {
-        return new EventResponse[]
+        return new[]
         { 
-            new EventResponse
+            new Event
             {
-                id = 1,
-                title = "Mock event 1",
-                description = "This is a mock event",
-                start = DateTime.UtcNow.AddDays(-2),
-                end = DateTime.UtcNow.AddDays(-1)
+                Id = Guid.NewGuid().ToString(),
+                Title = "Mock event 1",
+                Description = "This is a mock event",
+                Start = DateTime.UtcNow.AddDays(-2),
+                End = DateTime.UtcNow.AddDays(-1)
             },
-            new EventResponse
+            new Event
             {
-                id = 2,
-                title = "Mock event 2",
-                description = "This is a mock event",
-                start = DateTime.UtcNow.AddDays(-1),
-                end = DateTime.UtcNow
+                Id = Guid.NewGuid().ToString(),
+                Title = "Mock event 2",
+                Description = "This is a mock event",
+                Start = DateTime.UtcNow.AddDays(-1),
+                End = DateTime.UtcNow
             },
-            new EventResponse
+            new Event
             {
-                id = 3,
-                title = "Mock event 3",
-                description = "This is a mock event",
-                start = DateTime.UtcNow,
-                end = DateTime.UtcNow.AddHours(3)
+                Id = Guid.NewGuid().ToString(),
+                Title = "Mock event 3",
+                Description = "This is a mock event",
+                Start = DateTime.UtcNow,
+                End = DateTime.UtcNow.AddHours(3)
             },
-            new EventResponse
+            new Event
             {
-                id = 4,
-                title = "Mock event 4",
-                description = "This is a mock event",
-                start = DateTime.UtcNow.AddDays(2),
-                end = DateTime.UtcNow.AddDays(3).AddHours(-4)
+                Id = Guid.NewGuid().ToString(),
+                Title = "Mock event 4",
+                Description = "This is a mock event",
+                Start = DateTime.UtcNow.AddDays(2),
+                End = DateTime.UtcNow.AddDays(3).AddHours(-4)
             },
-            new EventResponse
+            new Event
             {
-                id = 5,
-                title = "Mock event 5",
-                description = "This is a mock event",
-                start = DateTime.UtcNow.AddDays(10),
-                end = DateTime.UtcNow.AddMonths(1)
+                Id = Guid.NewGuid().ToString(),
+                Title = "Mock event 5",
+                Description = "This is a mock event",
+                Start = DateTime.UtcNow.AddDays(10),
+                End = DateTime.UtcNow.AddMonths(1)
             }
         };
     }
