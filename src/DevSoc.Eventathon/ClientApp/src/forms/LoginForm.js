@@ -1,14 +1,29 @@
-﻿import React from "react";
+﻿import React, {useCallback} from "react";
 import { useForm } from "react-hook-form";
-import {LoginUser} from "../api/events-endpoint";
+import {login} from "../api/events-endpoint";
+import {useHistory} from "react-router-dom";
 
 export default function LoginForm() {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, errors, setError } = useForm();
+    const history = useHistory();
 
-    const onSubmit = (data) => {
+    const onSubmit = useCallback(
+        (formValues) => {
+            login(formValues.username, formValues.password).then(isLoggedIn => {
+                if (isLoggedIn) {
+                    history.push('/calendar')
+                } else {
+                    setError('auth', { type: 'custom', message: 'Your username or password was incorrect' })
+                }
+            })
+        },
+        [setError],
+    )
+    
+/*    const onSubmit = (data) => {
         console.log(data);
         LoginUser(data.username, data.password)
-    }
+    }*/
     
     return (
         <form className="register-form" onSubmit={handleSubmit(onSubmit)}>
@@ -19,7 +34,7 @@ export default function LoginForm() {
                    type="password"
                    {...register("password", { required: true, minLength: 8 })}
             />
-            {errors.Password && <p> Password must contain more than seven characters</p>}
+{/*            {errors.auth && <b>{errors.auth.message}</b>}*/}
             <button type="submit">Login</button>
         </form>
     );

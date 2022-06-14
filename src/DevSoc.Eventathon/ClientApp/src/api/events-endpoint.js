@@ -19,10 +19,7 @@ export const createEvent = (givenName, givenDescription, givenStart, givenEnd) =
       start: givenStart,
       end: givenEnd
   };
-  
-  if (element != null) {
-      axios.post('api/events', article).then(response => element.innerHTML = response.data.id);
-  }
+  axios.post('api/events', article).then(response => element.innerHTML = response.data.id);
 }
 
 // Not yet sending display name as database needs to be updated first
@@ -32,20 +29,12 @@ export const createUser = (givenUsername, givenPassword, givenDisplayName) => {
         username: givenUsername,
         password: givenPassword,
     };
-    if (element != null) {
-        axios.post('api/users', article).then(response => element.innerHTML = response.data.id);
-    }
+    axios.post('api/users', article).then(response => element.innerHTML = response.data.id);
 }
 
-export const LoginUser = (givenUsername, givenPassword) => {
-    const element = document.querySelector('#post-request .article-id');
-    const article = {
-        username: givenUsername,
-        password: givenPassword,
-    };
-    if (element != null) {
-        axios.post('api/login', article).then(response => element.innerHTML = response.data.id);
-    }
+export const login = (username, password) => {
+    // API layer, handles nothing except POST request - 200 status code means we logged in successfully
+    return axios.post('api/login', { username, password}).then(response => response.status === 200);
 }
 
 export function useDeleteEvent() {
