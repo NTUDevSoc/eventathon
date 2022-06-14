@@ -1,4 +1,5 @@
 ﻿using DevSoc.Eventathon.Data;
+using DevSoc.Eventathon.Data.Security;
 using DevSoc.Eventathon.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,12 +9,14 @@ namespace DevSoc.Eventathon.Controllers;
 public class UserController : ControllerBase
 {
     private readonly IUsersService _usersService;
+    private readonly IAuthenticationService _authenticationService;
 
-    public UserController(IUsersService usersService)
+    public UserController(IUsersService usersService, IAuthenticationService authenticationService)
     {
         _usersService = usersService;
+        _authenticationService = authenticationService;
     }
-    
+
     [HttpGet("api/users/{id}")]
     public Task<OkResult> GetUser([FromRoute] string id)
     {
@@ -27,6 +30,7 @@ public class UserController : ControllerBase
     public async Task<IActionResult> LoginUser([FromBody] UserDefinition definition)
     {
         Console.WriteLine("Login:\n" + definition.Username + definition.Password);
+        var authenticated = _authenticationService.Authenticate(definition.Username, definition.Password);
         return Ok(definition);
     }
     
