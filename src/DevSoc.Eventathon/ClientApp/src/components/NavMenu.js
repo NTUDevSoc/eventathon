@@ -9,7 +9,7 @@ export const NavMenu = () => {
 
   return (
     <header>
-      <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>
+      <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow" light>
         <Container>
           <NavbarBrand tag={Link} to="/">DevSoc.Eventathon</NavbarBrand>
           <NavbarToggler onClick={toggleNavbar} className="mr-2" />
@@ -29,6 +29,9 @@ export const NavMenu = () => {
               </NavItem>
               <NavItem>
                 <NavLink tag={Link} className="text-dark" to="/userEvents">My Events</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink tag={Link} className="text-dark" to="/account">Account</NavLink>
               </NavItem>
             </ul>
           </Collapse>

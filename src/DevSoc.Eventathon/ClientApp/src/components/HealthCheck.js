@@ -6,7 +6,7 @@ export const HealthCheck = () => {
   const isLoading = useState(() => status == null, [status]);
 
   return (
-    <div>
+    <div className="my-3">
       <h1>Health Check</h1>
       {isLoading ? 
         <p aria-live="polite">Current status: <strong>{status}</strong></p> :

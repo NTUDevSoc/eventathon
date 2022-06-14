@@ -50,7 +50,7 @@ export const EventsCalendar = () => {
     )
 
     return (
-        <div>
+        <div className="my-3">
             <h1><u>Our Events!</u></h1>
             <p>Welcome to the DevSoc events calendar. Here you can see all scheduled events. 
                 If you're a committee member you can also schedule new events from this page. 
@@ -62,6 +62,7 @@ export const EventsCalendar = () => {
                     {mutate('api/events')}
                 </p> : 
                 <Calendar
+                    className = "rbc-calendar"
                     localizer={localizer} 
                     events={eventList}
                     startAccessor="start"

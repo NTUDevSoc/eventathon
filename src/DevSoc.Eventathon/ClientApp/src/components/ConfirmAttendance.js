@@ -16,7 +16,7 @@ export const ConfirmAttendance = () => {
     const SendAttendance = () => {
         const element = document.querySelector('#post-request .article-id');
         const article = {
-            userID: 107,
+            userID: 107, // Arbitrarily chosen until user accounts are created
             eventID: givenID,
             name: givenTitle,
         };
@@ -24,7 +24,7 @@ export const ConfirmAttendance = () => {
     }
 
     return (
-        <div>
+        <div className="my-3">
             <h1><u>Event!</u></h1>
             <ul>
                 <li> Event ID: {givenID}</li>

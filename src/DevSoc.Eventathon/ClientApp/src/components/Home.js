@@ -2,7 +2,7 @@ import React from 'react';
 
 export const Home = () => {
   return (
-    <div>
+    <div className="my-3">
       <h1>Hello, world!</h1>
       <p>Welcome to your new single-page application, built with:</p>
       <ul>
