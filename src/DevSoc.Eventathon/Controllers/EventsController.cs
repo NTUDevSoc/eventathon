@@ -7,25 +7,25 @@ namespace DevSoc.Eventathon.Controllers;
 [ApiController]
 public class EventsController : ControllerBase
 {
-    private readonly IEventsRepository _eventsRepository;
+    private readonly IEventsService _eventsService;
 
-    public EventsController(IEventsRepository eventsRepository)
+    public EventsController(IEventsService eventsService)
     {
-        _eventsRepository = eventsRepository;
+        _eventsService = eventsService;
     }
 
     [HttpGet("api/events/{id}")]
     public async Task<IActionResult> GetEvent([FromRoute] string id)
     {
-        EventResponse result = await _eventsRepository.GetEvent(id);
+        Event result = await _eventsService.GetEvent(id);
         return Ok(result);
     }
 
     [HttpGet("api/events")]
     public async Task<IActionResult> GetEvents()
     {
-        EventResponse[] result = await _eventsRepository.GetEvents();
-        return Ok(result);
+        var events = await _eventsService.GetEvents();
+        return Ok(events);
     }
 
     [HttpPost("api/events")]
@@ -35,30 +35,5 @@ public class EventsController : ControllerBase
         Console.WriteLine(definition.Name + definition.Start + definition.End);
         // Todo: Store name, description, start, end on CalDev 
         return Ok(definition);
-    }
-
-    [HttpDelete("api/events/{uid}")]
-    public async Task<IActionResult> DeleteEvent([FromRoute] string uid)
-    {
-        bool result = await _eventsRepository.DeleteEvent(uid);
-
-        if (result != true)
-        {
-            return NotFound();
-        }
-
-        return Ok();
-    }
-
-    [HttpPost("api/events/{uid}")]
-    public async Task<IActionResult> EditEvent([FromRoute] string uid, [FromBody] EventDefinition definition)
-    {
-        string result = await _eventsRepository.EditEvent(uid, definition);
-        if (result != "") //I'm basically trying to check for 'nothing' here - need to check CalDAV.NET.
-        {
-            return NotFound();
-        }
-
-        return Ok();
     }
 }

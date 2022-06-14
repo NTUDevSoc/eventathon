@@ -16,6 +16,14 @@ public class EventsService : IEventsService
         _googleCalendarOptions = googleCalendarOptions;
     }
 
+    public async Task<Event> GetEvent(string id)
+    {
+        var calendarService = _googleCalendarServiceFactory.Create();
+        var request = calendarService.Events.Get(_googleCalendarOptions.Value.EventsCalendarId, id);
+        var @event = await request.ExecuteAsync();
+        return Event.FromGoogleEvent(@event);
+    }
+
     public async Task<IList<Event>> GetEvents()
     {
         var calendarService = _googleCalendarServiceFactory.Create();
