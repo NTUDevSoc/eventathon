@@ -62,6 +62,7 @@ export const EventsCalendar = () => {
                     {mutate('api/events')}
                 </p> : 
                 <Calendar
+                    className = "rbc-calendar"
                     localizer={localizer} 
                     events={eventList}
                     startAccessor="start"

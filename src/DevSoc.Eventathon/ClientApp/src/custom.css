@@ -19,8 +19,11 @@ code {
   padding: 10px;
 }
 
-
 .form-field {
   margin: 10px 0 10px 0;
   padding: 15px;
+}
+
+.rbc-calendar {
+  height: 70vh;
 }
