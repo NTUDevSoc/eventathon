@@ -25,7 +25,11 @@ public class UserController : ControllerBase
     [HttpPost("api/users")]
     public async Task<IActionResult> CreateUser([FromBody] UserDefinition definition)
     {
-        var userId = await _usersService.CreateUser(definition);
-        return Ok(userId);
+        // This is just commented out to test the api while the servers not working for me (Evelyn)
+        /*var userId = await _usersService.CreateUser(definition);
+        return Ok(userId);*/
+        
+        Console.WriteLine(definition.Username + definition.Password);
+        return Ok(definition);
     }
 }

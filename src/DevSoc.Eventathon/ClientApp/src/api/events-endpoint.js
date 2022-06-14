@@ -22,6 +22,17 @@ export const createEvent = (givenName, givenDescription, givenStart, givenEnd) =
   axios.post('api/events', article).then(response => element.innerHTML = response.data.id);
 }
 
+// Not yet sending display name as database needs to be updated first
+export const createUser = (givenUsername, givenPassword, givenDisplayName) => {
+    const element = document.querySelector('#post-request .article-id');
+    const article = {
+        username: givenUsername,
+        password: givenPassword,
+    };
+    axios.post('api/users', article).then(response => element.innerHTML = response.data.id);
+}
+
+
 export function useDeleteEvent() {
 
 }
