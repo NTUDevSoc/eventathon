@@ -29,6 +29,11 @@ code {
   margin-top: 30px;
 }
 
+.right-side {
+  height: 100vh;
+  width:100%;
+}
+
 .red-form {
   background-color: palevioletred;
 }
