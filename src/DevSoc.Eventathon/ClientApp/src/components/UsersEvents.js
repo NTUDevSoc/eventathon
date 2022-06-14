@@ -10,7 +10,7 @@ export const UsersEvents = () => {
     const [myEventsList] = useState(events)
     
     return (
-        <div>
+        <div className="my-3">
             <h1><u>My Events!</u></h1>
             <p>Here you will see all scheduled events you are attending:</p>
             <hr></hr>

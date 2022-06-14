@@ -24,7 +24,7 @@ export const ConfirmAttendance = () => {
     }
 
     return (
-        <div>
+        <div className="my-3">
             <h1><u>Event!</u></h1>
             <ul>
                 <li> Event ID: {givenID}</li>
