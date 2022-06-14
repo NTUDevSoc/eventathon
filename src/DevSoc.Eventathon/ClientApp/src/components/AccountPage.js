@@ -1,6 +1,7 @@
 ﻿import React from "react";
 import { useForm } from "react-hook-form";
 import {createUser} from "../api/events-endpoint";
+import LoginForm from "../forms/LoginForm";
 
 export default function AccountPage() {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -28,8 +29,11 @@ export default function AccountPage() {
                 />
                 <button type="submit">Submit</button>
             </form>
-
+            
             <hr></hr>
+            
+            <h1><u>Login!</u></h1>
+            <LoginForm />
         </div>
     );
 }
