@@ -19,7 +19,10 @@ export const createEvent = (givenName, givenDescription, givenStart, givenEnd) =
       start: givenStart,
       end: givenEnd
   };
-  axios.post('api/events', article).then(response => element.innerHTML = response.data.id);
+  
+  if (element != null) {
+      axios.post('api/events', article).then(response => element.innerHTML = response.data.id);
+  }
 }
 
 // Not yet sending display name as database needs to be updated first
@@ -29,7 +32,9 @@ export const createUser = (givenUsername, givenPassword, givenDisplayName) => {
         username: givenUsername,
         password: givenPassword,
     };
-    axios.post('api/users', article).then(response => element.innerHTML = response.data.id);
+    if (element != null) {
+        axios.post('api/users', article).then(response => element.innerHTML = response.data.id);
+    }
 }
 
 export const LoginUser = (givenUsername, givenPassword) => {
@@ -38,7 +43,9 @@ export const LoginUser = (givenUsername, givenPassword) => {
         username: givenUsername,
         password: givenPassword,
     };
-    axios.post('api/login', article).then(response => element.innerHTML = response.data.id);
+    if (element != null) {
+        axios.post('api/login', article).then(response => element.innerHTML = response.data.id);
+    }
 }
 
 export function useDeleteEvent() {
