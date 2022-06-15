@@ -30,6 +30,11 @@ export const login = (username, password) => {
     return axios.post('api/login', { username, password}).then(response => response.status === 200);
 }
 
+export const useUser = () => {
+    const fetcher = url => axios.get(url).then((response) => response.data);
+    return useSWR(`/api/users/current`, fetcher);
+}
+
 export function useDeleteEvent() {
 
 }
