@@ -14,6 +14,7 @@ export const EventsCalendar = () => {
     const [eventList, setEvents] = useState(events)
     const history = useHistory();
 
+    
     const { mutate } = useSWRConfig();
     const [realEventList, setRealEvents] = useState([]);
 
@@ -23,14 +24,20 @@ export const EventsCalendar = () => {
         setRealEvents(eventsResponse.events)
     }, [eventsResponse])
     
+    
     const handleSelectSlot = useCallback(
         ({ start, end}) => {
             const title = window.prompt('Enter event name: ')
             const description = window.prompt('Enter event description: ')
             if (title) {
                 setEvents((prev) => [...prev, { description, start, end, title}])
+
+                createEvent(title, description, start, end).then(isEventCreated => {
+                    if (!isEventCreated) {
+                        console.log('Event creation unsuccessful')
+                    }
+                })
             }
-            createEvent(title, start, end);
         },
         mutate('api/events')
         [setEvents]

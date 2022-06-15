@@ -32,7 +32,7 @@ public class EventsController : ControllerBase
     public async Task<IActionResult> CreateEvent([FromBody] EventDefinition definition)
     {
         // todo: change to use ClaimsPrincipal user
-        Console.WriteLine(definition.Name + definition.Start + definition.End);
+        Console.WriteLine(definition.Name + definition.Description + definition.Start + definition.End);
         // Todo: Store name, description, start, end on CalDev 
         return Ok(definition);
     }

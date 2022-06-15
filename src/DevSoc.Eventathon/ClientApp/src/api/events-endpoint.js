@@ -12,7 +12,6 @@ export const useEvents = () => {
 }
 
 export const createEvent = (givenName, givenDescription, givenStart, givenEnd) => {
-    // API layer, handles nothing except POST request - 200 status code means we logged in successfully
     const article = {
         name: givenName,
         description: givenDescription,
