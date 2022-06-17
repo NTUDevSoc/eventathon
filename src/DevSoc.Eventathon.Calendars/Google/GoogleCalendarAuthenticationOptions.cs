@@ -6,11 +6,5 @@ public class GoogleCalendarAuthenticationOptions
     
     public string ApplicationName { get; set; }
 
-    public string ServiceAccountEmail { get; set; }
-    
-    public string CertificatePath { get; set; }
-    
-    public string CertificatePassword { get; set; }
-    
-    public IList<string> Scopes { get; set; }
+    public string CredentialsPath { get; set; }
 }

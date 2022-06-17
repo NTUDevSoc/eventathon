@@ -9,6 +9,12 @@ namespace DevSoc.Eventathon.Calendars.Google;
 public class GoogleCalendarServiceFactory : IGoogleCalendarServiceFactory
 {
     private readonly IOptions<GoogleCalendarAuthenticationOptions> _googleCalendarApiOptions;
+    
+    private readonly IList<string> _scopes = new List<string>
+    {
+        CalendarService.Scope.Calendar,
+        CalendarService.Scope.CalendarEvents
+    };
 
     public GoogleCalendarServiceFactory(IOptions<GoogleCalendarAuthenticationOptions> googleCalendarApiOptions)
     {
@@ -18,20 +24,13 @@ public class GoogleCalendarServiceFactory : IGoogleCalendarServiceFactory
     public CalendarService Create()
     {
         var apiOptions = _googleCalendarApiOptions.Value;
-
-        var certificate = new X509Certificate2(
-            apiOptions.CertificatePath,
-            apiOptions.CertificatePassword,
-            X509KeyStorageFlags.Exportable);
-
-        var credentialsInitializer = new ServiceAccountCredential.Initializer(apiOptions.ServiceAccountEmail)
-        {
-            Scopes = apiOptions.Scopes
-        }.FromCertificate(certificate);
+        
+        using var stream = new FileStream(apiOptions.CredentialsPath, FileMode.Open, FileAccess.Read);
+        var credentials = GoogleCredential.FromStream(stream).CreateScoped(_scopes);
 
         return new CalendarService(new BaseClientService.Initializer
         {
-            HttpClientInitializer = new ServiceAccountCredential(credentialsInitializer),
+            HttpClientInitializer = credentials,
             ApplicationName = apiOptions.ApplicationName
         });
     }
