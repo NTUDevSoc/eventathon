@@ -28,7 +28,6 @@ public class EventsService : IEventsService
     {
         var calendarService = _googleCalendarServiceFactory.Create();
         var request = calendarService.Events.List(_googleCalendarOptions.Value.EventsCalendarId);
-        request.OrderBy = EventsResource.ListRequest.OrderByEnum.StartTime;
 
         var events = await request.ExecuteAsync();
         return events.Items.Select(Event.FromGoogleEvent).ToList();
