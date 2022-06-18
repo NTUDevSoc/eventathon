@@ -1,6 +1,4 @@
-﻿using CalDAV.NET;
-using CalDAV.NET.Interfaces;
-using DevSoc.Eventathon.Calendars.Models;
+﻿using DevSoc.Eventathon.Calendars.Google;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -8,22 +6,18 @@ namespace DevSoc.Eventathon.Calendars;
 
 public static class DependencyInjectionExtensions
 {
-    public static IServiceCollection AddCalDAVClient(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddEvents(this IServiceCollection services, IConfiguration configuration)
     {
-        var calendarConfigurationSection = configuration.GetRequiredSection("Calendar");
-        
-        return services.AddTransient<IClient, Client>(provider =>
-        {
-            var calendarUrl = calendarConfigurationSection["Url"];
-            var username = calendarConfigurationSection["Username"];
-            var password = calendarConfigurationSection["Password"];
-            
-            return new Client(new Uri(calendarUrl), username, password);
-        });
+        return services
+            .AddGoogleCalendar(configuration)
+            .AddTransient<IEventsService, EventsService>();
     }
-
-    public static IServiceCollection AddEvents(this IServiceCollection services)
+    
+    private static IServiceCollection AddGoogleCalendar(this IServiceCollection services, IConfiguration configuration)
     {
-        return services.AddTransient<IEventsRepository, EventsRepository>();
+        return services
+            .Configure<GoogleCalendarAuthenticationOptions>(configuration.GetSection(GoogleCalendarAuthenticationOptions.AppSettingsSection))
+            .Configure<GoogleCalendarOptions>(configuration.GetSection(GoogleCalendarOptions.AppSettingsSection))
+            .AddTransient<IGoogleCalendarServiceFactory, GoogleCalendarServiceFactory>();
     }
 }
