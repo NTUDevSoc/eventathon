@@ -6,4 +6,5 @@ public interface IEventsService
 {
     Task<Event> GetEvent(string id);
     Task<IList<Event>> GetEvents();
+    Task CreateEvent(EventDefinition definition);
 }
