@@ -1,7 +1,9 @@
 ﻿using DevSoc.Eventathon.Calendars.Google;
 using DevSoc.Eventathon.Calendars.Models;
 using Google.Apis.Calendar.v3;
+using Google.Apis.Calendar.v3.Data;
 using Microsoft.Extensions.Options;
+using Event = DevSoc.Eventathon.Calendars.Models.Event;
 
 namespace DevSoc.Eventathon.Calendars;
 
@@ -31,5 +33,18 @@ public class EventsService : IEventsService
 
         var events = await request.ExecuteAsync();
         return events.Items.Select(Event.FromGoogleEvent).ToList();
+    }
+    
+    public async Task CreateEvent(EventDefinition definition)
+    {
+        var googleEvent = new global::Google.Apis.Calendar.v3.Data.Event
+        {
+            Start = new EventDateTime { DateTime = definition.Start},
+            End = new EventDateTime { DateTime = definition.End},
+            Summary = definition.Name,
+            Description = definition.Description
+        };
+        var calendarService = _googleCalendarServiceFactory.Create();
+        await calendarService.Events.Insert(googleEvent, _googleCalendarOptions.Value.EventsCalendarId).ExecuteAsync();
     }
 }

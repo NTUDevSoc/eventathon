@@ -31,9 +31,8 @@ public class EventsController : ControllerBase
     [HttpPost("api/events")]
     public async Task<IActionResult> CreateEvent([FromBody] EventDefinition definition)
     {
-        // todo: change to use ClaimsPrincipal user
         Console.WriteLine(definition.Name + definition.Description + definition.Start + definition.End);
-        // Todo: Store name, description, start, end on CalDev 
+        await _eventsService.CreateEvent(definition);
         return Ok(definition);
     }
 }

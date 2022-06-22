@@ -26,7 +26,9 @@ public class GoogleCalendarServiceFactory : IGoogleCalendarServiceFactory
         var apiOptions = _googleCalendarApiOptions.Value;
         
         using var stream = new FileStream(apiOptions.CredentialsPath, FileMode.Open, FileAccess.Read);
-        var credentials = GoogleCredential.FromStream(stream).CreateScoped(_scopes);
+        var credentials = GoogleCredential.FromStream(stream)
+            .CreateScoped(_scopes)
+            .CreateWithUser(apiOptions.ImpersonateUser);
 
         return new CalendarService(new BaseClientService.Initializer
         {
