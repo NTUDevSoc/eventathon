@@ -16,11 +16,11 @@ public class UsersService : IUsersService
 
     public async Task<string> CreateUser(UserDefinition definition)
     {
-        var hashedPasswordResult = _passwordHasher.HashPassword(definition.Password);
+        var hashedPasswordResult = _passwordHasher.HashPassword(definition.Password!);
         var user = new User
         {
             Id = Guid.NewGuid().ToString(),
-            Username = definition.Username,
+            Username = definition.Username!,
             HashedPassword = hashedPasswordResult.HashedPassword,
             Salt = hashedPasswordResult.Base64SaltUsed
         };

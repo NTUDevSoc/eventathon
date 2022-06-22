@@ -19,6 +19,11 @@ public class AuthenticationService : IAuthenticationService
             _passwordHasher = passwordHasher;
             _userRepository = userRepository;
             _securitySettings = securitySettings.Value;
+            
+            if (!_securitySettings.IsValid())
+            {
+                throw new InvalidOperationException($"{nameof(IOptions<SecurityOptions>)} security settings are invalid for {nameof(AuthenticationService)}");
+            }
         }
         
         public async Task<AuthenticationResult> Authenticate(string username, string password)
@@ -42,6 +47,11 @@ public class AuthenticationService : IAuthenticationService
         
         private string GenerateJwt(string username)
         {
+            if (!_securitySettings.IsValid())
+            {
+                throw new InvalidOperationException($"{nameof(IOptions<SecurityOptions>)} security settings are invalid for {nameof(AuthenticationService)}");
+            }
+            
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_securitySettings.Secret);
             
@@ -51,7 +61,7 @@ public class AuthenticationService : IAuthenticationService
                 {
                     new Claim(ClaimTypes.Email, username)
                 }),
-                Expires = DateTime.UtcNow.Add(_securitySettings.JwtExpiry),
+                Expires = DateTime.UtcNow.Add(_securitySettings.JwtExpiry.Value),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
             

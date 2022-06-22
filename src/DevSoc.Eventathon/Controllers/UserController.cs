@@ -28,6 +28,12 @@ public class UserController : ControllerBase
     [HttpPost("api/login")]
     public async Task<IActionResult> LoginUser([FromBody] UserDefinition definition)
     {
+        if (string.IsNullOrEmpty(definition.Username) || string.IsNullOrEmpty(definition.Password))
+        {
+            // todo: add proper validation later
+            return BadRequest();
+        }
+        
         var authenticationResult = await _authenticationService.Authenticate(definition.Username, definition.Password);
         return authenticationResult.IsSuccess ? Ok(authenticationResult.Jwt) : Unauthorized();
     }

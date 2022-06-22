@@ -6,14 +6,14 @@ namespace DevSoc.Eventathon.Data.Models;
 public class User
 {
     [Column("Id")]
-    public string Id { get; set; }
+    public string Id { get; set; } = "";
     
     [Column("Username")]
-    public string Username { get; set; }
+    public string Username { get; set; } = "";
     
     [Column("HashedPassword")]
-    public string HashedPassword { get; set; }
+    public string HashedPassword { get; set; } = "";
     
     [Column("Salt")]
-    public string Salt { get; set; }
+    public string Salt { get; set; } = "";
 }
