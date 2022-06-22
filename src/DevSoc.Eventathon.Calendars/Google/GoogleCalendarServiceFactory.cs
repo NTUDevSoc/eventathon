@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Security.Cryptography.X509Certificates;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Calendar.v3;
 using Google.Apis.Services;
@@ -24,7 +25,12 @@ public class GoogleCalendarServiceFactory : IGoogleCalendarServiceFactory
     public CalendarService Create()
     {
         var apiOptions = _googleCalendarApiOptions.Value;
-        
+
+        if (!DoCredentialsExist(apiOptions.CredentialsPath))
+        {
+            throw new InvalidOperationException($"Invalid path supplied for Google calendar credentials: {apiOptions.CredentialsPath}");
+        }
+
         using var stream = new FileStream(apiOptions.CredentialsPath, FileMode.Open, FileAccess.Read);
         var credentials = GoogleCredential.FromStream(stream)
             .CreateScoped(_scopes)
@@ -36,4 +42,7 @@ public class GoogleCalendarServiceFactory : IGoogleCalendarServiceFactory
             ApplicationName = apiOptions.ApplicationName
         });
     }
+
+    private static bool DoCredentialsExist([NotNullWhen(true)] string? credentialsPath) => 
+        !string.IsNullOrEmpty(credentialsPath) && File.Exists(credentialsPath);
 }
