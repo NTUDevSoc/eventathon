@@ -6,5 +6,7 @@ public class GoogleCalendarAuthenticationOptions
     
     public string ApplicationName { get; set; }
 
+    public string ImpersonateUser { get; set; }
+
     public string CredentialsPath { get; set; }
 }
