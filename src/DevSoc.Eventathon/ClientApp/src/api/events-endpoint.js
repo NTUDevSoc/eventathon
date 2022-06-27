@@ -13,7 +13,7 @@ export const useEvents = () => {
 
 export const createEvent = (givenName, givenDescription, givenStart, givenEnd) => {
     const article = {
-        name: givenName,
+        summary: givenName,
         description: givenDescription,
         start: givenStart,
         end: givenEnd

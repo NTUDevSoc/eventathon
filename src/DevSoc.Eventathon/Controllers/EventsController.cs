@@ -29,9 +29,8 @@ public class EventsController : ControllerBase
     }
 
     [HttpPost("api/events")]
-    public async Task<IActionResult> CreateEvent([FromBody] EventDefinition definition)
+    public async Task<IActionResult> CreateEvent([FromBody] global::Google.Apis.Calendar.v3.Data.Event definition)
     {
-        Console.WriteLine(definition.Name + definition.Description + definition.Start + definition.End);
         await _eventsService.CreateEvent(definition);
         return Ok(definition);
     }

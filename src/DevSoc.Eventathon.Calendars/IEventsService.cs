@@ -6,5 +6,5 @@ public interface IEventsService
 {
     Task<Event> GetEvent(string id);
     Task<IList<Event>> GetEvents();
-    Task CreateEvent(EventDefinition definition);
+    Task CreateEvent(global::Google.Apis.Calendar.v3.Data.Event definition);
 }

@@ -35,16 +35,9 @@ public class EventsService : IEventsService
         return events.Items.Select(Event.FromGoogleEvent).ToList();
     }
     
-    public async Task CreateEvent(EventDefinition definition)
+    public async Task CreateEvent(global::Google.Apis.Calendar.v3.Data.Event definition)
     {
-        var googleEvent = new global::Google.Apis.Calendar.v3.Data.Event
-        {
-            Start = new EventDateTime { DateTime = definition.Start},
-            End = new EventDateTime { DateTime = definition.End},
-            Summary = definition.Name,
-            Description = definition.Description
-        };
         var calendarService = _googleCalendarServiceFactory.Create();
-        await calendarService.Events.Insert(googleEvent, _googleCalendarOptions.Value.EventsCalendarId).ExecuteAsync();
+        await calendarService.Events.Insert(definition, _googleCalendarOptions.Value.EventsCalendarId).ExecuteAsync();
     }
 }
