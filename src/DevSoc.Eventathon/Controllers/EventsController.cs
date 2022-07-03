@@ -31,8 +31,7 @@ public class EventsController : ControllerBase
     [HttpPost("api/events")]
     public async Task<IActionResult> CreateEvent([FromBody] EventDefinition definition)
     {
-        Console.WriteLine(definition.Name + definition.Description + definition.Start + definition.End);
-        await _eventsService.CreateEvent(definition);
-        return Ok(definition);
+        var eventId = await _eventsService.CreateEvent(definition);
+        return Ok(eventId);
     }
 }
