@@ -2,6 +2,6 @@
 
 public class HashedPasswordResult
 {
-    public string Base64SaltUsed { get; set; }
-    public string HashedPassword { get; set; }
+    public string Base64SaltUsed { get; set; } = "";
+    public string HashedPassword { get; set; } = "";
 }

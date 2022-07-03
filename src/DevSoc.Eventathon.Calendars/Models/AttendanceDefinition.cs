@@ -2,7 +2,7 @@
 
 public class AttendanceDefinition
 {
-    public int UserID { get; set; }
-    public int EventID { get; set; }
-    public string Name { get; set; }
+    public int? UserId { get; set; }
+    public int? EventId { get; set; }
+    public string? Name { get; set; }
 }

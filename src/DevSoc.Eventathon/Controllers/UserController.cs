@@ -20,8 +20,7 @@ public class UserController : ControllerBase
     [HttpGet("api/users/{id}")]
     public Task<OkResult> GetUser([FromRoute] string id)
     {
-        /*  We'd likely return JSON here?
-            Might be easier for the Node.JS frontend to handle. */
+        // todo: get user
         return Task.FromResult(new OkResult());
     }
     
@@ -29,19 +28,20 @@ public class UserController : ControllerBase
     [HttpPost("api/login")]
     public async Task<IActionResult> LoginUser([FromBody] UserDefinition definition)
     {
-        Console.WriteLine("Login:\n" + definition.Username + definition.Password);
-        var authenticated = _authenticationService.Authenticate(definition.Username, definition.Password);
-        return Ok(definition);
+        if (string.IsNullOrEmpty(definition.Username) || string.IsNullOrEmpty(definition.Password))
+        {
+            // todo: add proper validation later
+            return BadRequest();
+        }
+        
+        var authenticationResult = await _authenticationService.Authenticate(definition.Username, definition.Password);
+        return authenticationResult.IsSuccess ? Ok(authenticationResult.Jwt) : Unauthorized();
     }
     
     [HttpPost("api/users")]
     public async Task<IActionResult> CreateUser([FromBody] UserDefinition definition)
     {
-        // This is just commented out to test the api while the servers not working for me (Evelyn)
-        /*var userId = await _usersService.CreateUser(definition);
-        return Ok(userId);*/
-        
-        Console.WriteLine("Signup:\n" + definition.Username + definition.Password);
-        return Ok(definition);
+        var userId = await _usersService.CreateUser(definition);
+        return Ok(userId);
     }
 }

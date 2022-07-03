@@ -8,11 +8,9 @@ public class AttendanceController : ControllerBase
 {
 
     [HttpPost("api/attendance")]
-    public async Task<IActionResult> ConfirmAttendance([FromBody] AttendanceDefinition definition)
+    public Task<IActionResult> ConfirmAttendance([FromBody] AttendanceDefinition definition)
     {
-        // todo: change to use ClaimsPrincipal user
-        Console.WriteLine(definition.UserID + "," + definition.EventID + "," + definition.Name);
-        // Todo: Store attendance along with user data 
-        return new OkResult();
+        // todo: implement attendance
+        return Task.FromResult<IActionResult>(new OkResult());
     }
 }
