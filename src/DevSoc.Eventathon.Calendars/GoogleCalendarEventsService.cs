@@ -7,18 +7,18 @@ using Event = DevSoc.Eventathon.Calendars.Models.Event;
 
 namespace DevSoc.Eventathon.Calendars;
 
-public class EventsService : IEventsService
+public class GoogleCalendarEventsService : IEventsService
 {
     private readonly IGoogleCalendarServiceFactory _googleCalendarServiceFactory;
     private readonly IOptions<GoogleCalendarOptions> _googleCalendarOptions;
 
-    public EventsService(IGoogleCalendarServiceFactory googleCalendarServiceFactory, IOptions<GoogleCalendarOptions> googleCalendarOptions)
+    public GoogleCalendarEventsService(IGoogleCalendarServiceFactory googleCalendarServiceFactory, IOptions<GoogleCalendarOptions> googleCalendarOptions)
     {
         _googleCalendarServiceFactory = googleCalendarServiceFactory;
         _googleCalendarOptions = googleCalendarOptions;
     }
 
-    public async Task<Event> GetEvent(string id)
+    public async Task<Event?> GetEvent(string id)
     {
         var calendarService = _googleCalendarServiceFactory.Create();
         var request = calendarService.Events.Get(_googleCalendarOptions.Value.EventsCalendarId, id);
@@ -35,7 +35,7 @@ public class EventsService : IEventsService
         return events.Items.Select(Event.FromGoogleEvent).ToList();
     }
     
-    public async Task CreateEvent(EventDefinition definition)
+    public async Task<string> CreateEvent(EventDefinition definition)
     {
         var googleEvent = new global::Google.Apis.Calendar.v3.Data.Event
         {
@@ -44,7 +44,12 @@ public class EventsService : IEventsService
             Summary = definition.Name,
             Description = definition.Description
         };
+        
         var calendarService = _googleCalendarServiceFactory.Create();
-        await calendarService.Events.Insert(googleEvent, _googleCalendarOptions.Value.EventsCalendarId).ExecuteAsync();
+        var response = await calendarService.Events
+            .Insert(googleEvent, _googleCalendarOptions.Value.EventsCalendarId)
+            .ExecuteAsync();
+
+        return response.Id;
     }
 }

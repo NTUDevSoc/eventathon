@@ -19,6 +19,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/cc5319042d2c4e208645dfcbd39e6cae9600/ba/0844fd3f/Client.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/cc5319042d2c4e208645dfcbd39e6cae9600/f2/7ccdbef8/IClient.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/103fd08c74a332e2094a428179afad385a5d677d4fb32a5879d7dbd29/ClientSecrets.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/53aaa3c68bdecefc27714170f47b5e4f9654644cbc36ce6c77f4cb384e4c6dd/BaseClientService.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/649ef811857fbc61d6bbf9273322f28fb54cb196dbbbd35a474eded225a2234d/NpgsqlConnection.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/8271807a61bb8a8540cf6d7a38534480374a4aac934ee4f53d7efdc9aea37ae/IOptions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9cf8ffb8db155a96bf3935b8be5ab7617fba3ba71bd749f634e183ad755c018/Google.Apis.Calendar.v3.cs" root0="SKIP_HIGHLIGHTING" />
@@ -102,6 +103,7 @@
       <workItem from="1655832163800" duration="2407000" />
       <workItem from="1655847248462" duration="41000" />
       <workItem from="1655915682005" duration="618000" />
+      <workItem from="1656812989784" duration="2035000" />
     </task>
     <servers />
   </component>

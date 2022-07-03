@@ -17,8 +17,8 @@ public class EventsController : ControllerBase
     [HttpGet("api/events/{id}")]
     public async Task<IActionResult> GetEvent([FromRoute] string id)
     {
-        Event result = await _eventsService.GetEvent(id);
-        return Ok(result);
+        var @event = await _eventsService.GetEvent(id);
+        return Ok(@event);
     }
 
     [HttpGet("api/events")]

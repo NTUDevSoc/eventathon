@@ -4,7 +4,7 @@ namespace DevSoc.Eventathon.Calendars;
 
 public interface IEventsService
 {
-    Task<Event> GetEvent(string id);
+    Task<Event?> GetEvent(string id);
     Task<IList<Event>> GetEvents();
-    Task CreateEvent(EventDefinition definition);
+    Task<string> CreateEvent(EventDefinition definition);
 }
