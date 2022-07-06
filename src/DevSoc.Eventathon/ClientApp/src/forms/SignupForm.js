@@ -1,4 +1,4 @@
-﻿import React, {useCallback} from "react";
+import React, {useCallback} from "react";
 import { useForm } from "react-hook-form";
 import {createUser} from "../api/events-endpoint";
 

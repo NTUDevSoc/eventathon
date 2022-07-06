@@ -25,7 +25,7 @@ export default function LoginForm() {
                 }
             })
         },
-        [setError],
+        [history, user, setError],
     )
 
     
