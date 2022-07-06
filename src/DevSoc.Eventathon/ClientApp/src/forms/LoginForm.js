@@ -1,8 +1,7 @@
 import React, { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
-import { login } from "../api/events-endpoints";
-import { useUser } from "../api/users-endpoints"
+import { useUser, login } from "../api/users-endpoints"
 
 export default function LoginForm() {
     const { register, handleSubmit, errors, setError } = useForm();
