@@ -2,7 +2,7 @@ import React, { useCallback } from 'react'
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-import { useEvents, createEvent } from '../api/events-endpoint';
+import { useEvents, createEvent } from '../api/events-endpoints';
 
 import { useHistory } from "react-router-dom";
 
