@@ -1,7 +1,6 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using DevSoc.Eventathon.Data.Encryption;
 using DevSoc.Eventathon.Data.Security.Encryption;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;

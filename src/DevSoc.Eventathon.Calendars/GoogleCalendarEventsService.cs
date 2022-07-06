@@ -1,6 +1,5 @@
 ﻿using DevSoc.Eventathon.Calendars.Google;
 using DevSoc.Eventathon.Calendars.Models;
-using Google.Apis.Calendar.v3;
 using Google.Apis.Calendar.v3.Data;
 using Microsoft.Extensions.Options;
 using Event = DevSoc.Eventathon.Calendars.Models.Event;

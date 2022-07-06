@@ -1,5 +1,4 @@
 ﻿using System.Security.Cryptography;
-using DevSoc.Eventathon.Data.Encryption;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 
 namespace DevSoc.Eventathon.Data.Security.Encryption;

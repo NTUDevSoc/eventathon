@@ -1,6 +1,4 @@
-﻿using DevSoc.Eventathon.Data.Encryption;
-
-namespace DevSoc.Eventathon.Data.Security.Encryption;
+﻿namespace DevSoc.Eventathon.Data.Security.Encryption;
 
 public interface IPasswordHasher
 {

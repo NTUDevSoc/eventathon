@@ -32,6 +32,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="SWEA" />
+  </component>
   <component name="ProjectId" id="2AG9E18FyIm18F2da6tzgrFkWNE" />
   <component name="ProjectViewState">
     <option name="autoscrollFromSource" value="true" />
@@ -103,7 +106,8 @@
       <workItem from="1655832163800" duration="2407000" />
       <workItem from="1655847248462" duration="41000" />
       <workItem from="1655915682005" duration="618000" />
-      <workItem from="1656812989784" duration="2399000" />
+      <workItem from="1656812989784" duration="2752000" />
+      <workItem from="1657072003672" duration="981000" />
     </task>
     <servers />
   </component>
