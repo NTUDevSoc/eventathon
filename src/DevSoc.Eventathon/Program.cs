@@ -9,7 +9,7 @@ internal class Program
     {
         var builder = WebApplication.CreateBuilder(args);
         builder.Services.AddControllers();
-
+        
         builder.Services
             .AddDatabase(builder.Configuration)
             .AddUsers(builder.Configuration)
@@ -17,10 +17,8 @@ internal class Program
         
         var app = builder.Build();
 
-        // Configure the HTTP request pipeline.
         if (!app.Environment.IsDevelopment())
         {
-            // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
             app.UseHsts();
         }
         
@@ -39,6 +37,6 @@ internal class Program
         app.MapControllerRoute("API controllers", "api/*");
         app.MapFallbackToFile("index.html");
         
-        app.Run();
+        await app.RunAsync();
     }
 }

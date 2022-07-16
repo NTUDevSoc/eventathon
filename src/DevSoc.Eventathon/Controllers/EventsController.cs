@@ -17,8 +17,8 @@ public class EventsController : ControllerBase
     [HttpGet("api/events/{id}")]
     public async Task<IActionResult> GetEvent([FromRoute] string id)
     {
-        Event result = await _eventsService.GetEvent(id);
-        return Ok(result);
+        var @event = await _eventsService.GetEvent(id);
+        return Ok(@event);
     }
 
     [HttpGet("api/events")]
@@ -31,8 +31,7 @@ public class EventsController : ControllerBase
     [HttpPost("api/events")]
     public async Task<IActionResult> CreateEvent([FromBody] EventDefinition definition)
     {
-        Console.WriteLine(definition.Name + definition.Description + definition.Start + definition.End);
-        await _eventsService.CreateEvent(definition);
-        return Ok(definition);
+        var eventId = await _eventsService.CreateEvent(definition);
+        return Ok(eventId);
     }
 }

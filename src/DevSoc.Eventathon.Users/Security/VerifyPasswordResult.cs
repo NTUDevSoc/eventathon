@@ -1,4 +1,4 @@
-﻿namespace DevSoc.Eventathon.Data.Encryption;
+﻿namespace DevSoc.Eventathon.Data.Security;
 
 public enum VerifyPasswordResult
 {

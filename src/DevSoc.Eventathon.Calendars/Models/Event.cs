@@ -19,4 +19,16 @@ public class Event
             End = @event.End.DateTime,
         };
     }
+
+    internal static Event FromDefinition(string id, EventDefinition definition)
+    {
+        return new Event
+        {
+            Id = id,
+            Title = definition.Name,
+            Description = definition.Description,
+            Start = definition.Start,
+            End = definition.End
+        };
+    }
 }

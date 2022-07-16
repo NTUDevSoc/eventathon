@@ -1,5 +1,4 @@
 ﻿using Dapper;
-using Dapper.Contrib.Extensions;
 using DevSoc.Eventathon.Data.Models;
 using DevSoc.Eventathon.Data.Security.Encryption;
 
