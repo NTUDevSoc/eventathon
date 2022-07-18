@@ -14,13 +14,12 @@ export const ConfirmAttendance = () => {
     console.log(history.location.state)
     
     const SendAttendance = () => {
-        const element = document.querySelector('#post-request .article-id');
         const article = {
             userID: 107, // Arbitrarily chosen until user accounts are created
             eventID: givenID,
             name: givenTitle,
         };
-        axios.post('api/attendance', article).then(response => element.innerHTML = response.data.id);
+        axios.post('api/attendance', article).then(response => response.status === 200);
     }
 
     return (
