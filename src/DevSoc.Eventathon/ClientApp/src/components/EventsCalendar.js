@@ -30,13 +30,12 @@ export const EventsCalendar = () => {
             const title = window.prompt('Enter event name: ')
             const description = window.prompt('Enter event description: ')
             if (title) {
-                setEvents((prev) => [...prev, { description, start, end, title}])
-
-                createEvent(title, description, start, end).then(isEventCreated => {
+                const id = createEvent(title, description, start, end).then(isEventCreated => {
                     if (!isEventCreated) {
                         console.log('Event creation unsuccessful')
                     }
                 })
+                setEvents((prev) => [...prev, { id, title, description, start, end}])
             }
         },
         mutate('api/events')
