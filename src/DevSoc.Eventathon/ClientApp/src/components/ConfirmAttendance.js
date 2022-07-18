@@ -1,6 +1,7 @@
 ﻿import React from 'react'
 import axios from "axios";
 import {useHistory} from "react-router-dom";
+import {SendAttendance} from "../api/events-endpoint";
 
 export const ConfirmAttendance = () => {
     const history = useHistory();
@@ -12,15 +13,7 @@ export const ConfirmAttendance = () => {
     const givenEnd = history.location.state.givenEnd
     
     console.log(history.location.state)
-    
-    const SendAttendance = () => {
-        const article = {
-            userID: 107, // Arbitrarily chosen until user accounts are created
-            eventID: givenID,
-            name: givenTitle,
-        };
-        axios.post('api/attendance', article).then(response => response.status === 200);
-    }
+    SendAttendance(givenID, givenTitle)
 
     return (
         <div className="my-3">
