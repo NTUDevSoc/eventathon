@@ -35,11 +35,10 @@ export const useUser = () => {
     return useSWR(`/api/users/current`, fetcher);
 }
 
-export const SendAttendance = (givenID, givenTitle) => {
+export const SendAttendance = (givenID) => {
     const article = {
         userID: 107, // Arbitrarily chosen until user accounts are created
         eventID: givenID,
-        name: givenTitle,
     };
     axios.post('api/attendance', article).then(response => response.status === 200);
 }

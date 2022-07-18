@@ -13,7 +13,7 @@ export const ConfirmAttendance = () => {
     const givenEnd = history.location.state.givenEnd
     
     console.log(history.location.state)
-    SendAttendance(givenID, givenTitle)
+    SendAttendance(givenID)
 
     return (
         <div className="my-3">
