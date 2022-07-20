@@ -4,7 +4,7 @@ import {useHistory} from "react-router-dom";
 import {login, useUser} from "../api/events-endpoint";
 
 export default function LoginForm() {
-    const { register, handleSubmit, errors, setError } = useForm();
+    const { register, handleSubmit, setError, formState: { errors } } = useForm();
     const { data: user } = useUser();
     const [show,setShow]=useState(false)
     const history = useHistory();
@@ -39,8 +39,8 @@ export default function LoginForm() {
                    type="password"
                    {...register("password", { required: true, minLength: 8 })}
             />
-            {/*            {errors.auth && <b>{errors.auth.message}</b>}*/}
             <button type="submit">Login</button>
+            {errors.password && <p> Login unsuccessful</p>}
 
             {show?
             <div className="mt-4 d-flex justify-content-center">
