@@ -18,7 +18,7 @@ export const createEvent = (givenName, givenDescription, givenStart, givenEnd) =
         start: givenStart,
         end: givenEnd
     };
-    return axios.post('api/events', article).then(response => response.status === 200);
+    return axios.post('api/events', article).then(response => response.data);
 }
 
 export const createUser = (username, password, givenDisplayName) => {
