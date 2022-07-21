@@ -13,9 +13,15 @@ public class UsersRepository : IUsersRepository
         _connectionManager = connectionManager;
     }
     
-    public Task<User?> GetUser(string id)
+    public async Task<List<User>> GetUser(string id)
     {
-        throw new NotImplementedException();
+        // throw new NotImplementedException();
+        using var connection = await _connectionManager.Open();
+        var queryString = "SELECT * FROM public.users WHERE users.username = @idSql";
+        using (connection)
+        {
+            return connection.Query<User>(queryString, new { idSql = id}).ToList();
+        }
     }
 
     public async Task<string> CreateUser(User user)
@@ -25,23 +31,24 @@ public class UsersRepository : IUsersRepository
 
         var insertQuery = @"
         INSERT INTO public.users
-        (""Id"", ""Username"", ""HashedPassword"", ""Salt"")
+        (""id"", ""username"", ""hashedPassword"", ""salt"")
         VALUES(@id, @username, @hashedPassword, @salt);";
 
         await connection.ExecuteAsync(insertQuery, user);
         transaction.Commit();
-        
+
         return user.Id;
     }
     
     public async Task<HashedPasswordResult?> GetHashedPasswordForUser(string username)
     {
-        var user = await GetUser(username);
-        if (user is null)
+        var userList = await GetUser(username);
+        if (userList is null)
         {
             return null;
         }
-            
+
+        var user = userList[0];    
         return new HashedPasswordResult
         {
             HashedPassword = user.HashedPassword,

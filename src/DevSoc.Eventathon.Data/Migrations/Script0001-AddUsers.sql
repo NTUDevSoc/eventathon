@@ -1,6 +1,6 @@
 ﻿CREATE TABLE Users (
-    "Id" varchar(40) PRIMARY KEY,
-    "Username" varchar(40) UNIQUE,
-    "HashedPassword" varchar(100),
-    "Salt" varchar(100)
+    "id" varchar(40) PRIMARY KEY,
+    "username" varchar(40) UNIQUE,
+    "hashedPassword" varchar(100),
+    "salt" varchar(100)
 )
