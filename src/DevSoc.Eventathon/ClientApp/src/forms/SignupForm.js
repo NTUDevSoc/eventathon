@@ -22,7 +22,7 @@ export default function SignupForm() {
 
     return (
         <form className="register-form" onSubmit={handleSubmit(onSubmit)}>
-            <input className="form-field" placeholder="Username"
+            <input className="form-field" placeholder="N/T Number"
                    {...register("username", { required: true })}
             />
             <input className="form-field" placeholder="Password"

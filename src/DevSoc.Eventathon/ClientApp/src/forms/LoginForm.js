@@ -13,13 +13,16 @@ export default function LoginForm() {
         (formValues) => {
             login(formValues.username, formValues.password).then(isLoggedIn => {
                 if (isLoggedIn) {
-                    if (!user) {
+                    history.push('/calendar')
+                    
+/*                    if (!user) {
                         // show spinner... redirect to login after some amount of time
                         setShow(true)
                     }
                     else{
                         history.push('/calendar')
-                    }
+                    }*/
+                    
                 } else {
                     setError('auth', { type: 'custom', message: 'Your username or password was incorrect' })
                 }
@@ -32,7 +35,7 @@ export default function LoginForm() {
     
     return (
         <form className="register-form" onSubmit={handleSubmit(onSubmit)}>
-            <input className="form-field" placeholder="Username"
+            <input className="form-field" placeholder="N/T Number"
                    {...register("username", { required: true })}
             />
             <input className="form-field" placeholder="Password"
