@@ -11,7 +11,6 @@ public class AttendanceController : ControllerBase
     public Task<IActionResult> ConfirmAttendance([FromBody] AttendanceDefinition definition)
     {
         // todo: implement attendance
-        Console.WriteLine(definition.UserId);
         return Task.FromResult<IActionResult>(new OkResult());
     }
 }
