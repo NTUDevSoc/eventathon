@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react'
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
-import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { useEvents, createEvent } from '../api/events-endpoints';
+import './EventsCalendar.css';
 
 import { useHistory } from "react-router-dom";
 
@@ -13,11 +13,12 @@ export const EventsCalendar = () => {
     const { data: events, mutate } = useEvents();
 
     const handleSelectSlot = useCallback(
-        ({ start, end }) => {
+        async ({ start, end }) => {
             const title = window.prompt('Enter event name: ')
             const description = window.prompt('Enter event description: ')
-
-            mutate(createEvent(title, description, start, end), { optimisticData: { title, description, start, end }, rollbackOnError: true });
+            
+            const id = await createEvent(title, description, start, end);
+            mutate([...events, { id, title, description, start, end }], { rollbackOnError: true });
         },
         [mutate]
     )
@@ -50,7 +51,6 @@ export const EventsCalendar = () => {
             {!events ?
                 <p>Loading calendar...</p> :
                 <Calendar
-                    className="rbc-calendar"
                     localizer={localizer}
                     events={events}
                     startAccessor="start"
