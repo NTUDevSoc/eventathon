@@ -1,81 +1,63 @@
-﻿import React, { useState, useCallback, useEffect } from 'react'
+import React, { useCallback } from 'react'
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
-import 'react-big-calendar/lib/css/react-big-calendar.css';
-import {useEvents, createEvent} from '../api/events-endpoint';
-import { useSWRConfig } from 'swr'
-import events from '../resources/events';
+import { useEvents, createEvent } from '../api/events-endpoints';
+import './EventsCalendar.css';
 
 import { useHistory } from "react-router-dom";
 
 const localizer = momentLocalizer(moment);
 
 export const EventsCalendar = () => {
-    const [eventList, setEvents] = useState(events)
     const history = useHistory();
+    const { data: events, mutate } = useEvents();
 
-    
-    const { mutate } = useSWRConfig();
-    const [realEventList, setRealEvents] = useState([]);
-
-    const { data: eventsResponse } = useEvents();
-    useEffect(() => {
-        if (!eventsResponse) return; 
-        setRealEvents(eventsResponse.events)
-    }, [eventsResponse])
-    
-    
     const handleSelectSlot = useCallback(
-        ({ start, end}) => {
+        async ({ start, end }) => {
             const title = window.prompt('Enter event name: ')
             const description = window.prompt('Enter event description: ')
-            if (title) {
-                createEvent(title, description, start, end).then(isEventCreated => {
-                    if (!isEventCreated) {
-                        console.log('Event creation unsuccessful')
-                    }
-                })
-                setEvents((prev) => [...prev, {title, description, start, end}])
-            }
+            const id = await createEvent(title, description, start, end);
+            mutate([...events, { id, title, description, start, end }], { rollbackOnError: true });
         },
-        mutate('api/events')
-        [setEvents]
+        [mutate]
     )
 
     const handleSelectEvent = useCallback(
         (event) => {
             history.push(
                 {
-                    pathname: "/attendance", 
-                    state: {"givenID": event.id, "givenTitle": event.title,"givenDescription": event.description,
-                        "givenStart": event.start, "givenEnd": event.end}
+                    pathname: "/attendance",
+                    state: {
+                        givenId: event.id,
+                        givenTitle: event.title,
+                        givenDescription: event.description,
+                        givenStart: event.start,
+                        givenEnd: event.end
+                    }
                 }
             )
-        },[]
+        }, [history]
     )
 
     return (
         <div className="my-3">
             <h1><u>Our Events!</u></h1>
-            <p>Welcome to the DevSoc events calendar. Here you can see all scheduled events. 
-                If you're a committee member you can also schedule new events from this page. 
-                If you can schedule events and you're not a committtee member this is a bug.
+            <p>Welcome to the DevSoc events calendar. Here you can see all scheduled events.
+            If you're a committee member you can also schedule new events from this page.
+            If you can schedule events and you're not a committtee member this is a bug.
                 Be a good person and just don't use this immense power.</p>
             <hr></hr>
-            {!eventList ? 
-                <p>Loading calendar...
-                    {mutate('api/events')}
-                </p> : 
+            {!events ?
+                <p>Loading calendar...</p> :
                 <Calendar
-                    className = "rbc-calendar"
-                    localizer={localizer} 
-                    events={eventList}
+                    localizer={localizer}
+                    events={events}
                     startAccessor="start"
                     endAccessor="end"
                     onSelectSlot={handleSelectSlot}
                     onSelectEvent={handleSelectEvent}
                     selectable
-                />   
+                />
             }
         </div>
     );
