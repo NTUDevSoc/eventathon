@@ -36,17 +36,9 @@ public class GoogleCalendarEventsService : IEventsService
     
     public async Task<string> CreateEvent(EventDefinition definition)
     {
-        var googleEvent = new global::Google.Apis.Calendar.v3.Data.Event
-        {
-            Start = new EventDateTime { DateTime = definition.Start},
-            End = new EventDateTime { DateTime = definition.End},
-            Summary = definition.Name,
-            Description = definition.Description
-        };
-        
         var calendarService = _googleCalendarServiceFactory.Create();
         var response = await calendarService.Events
-            .Insert(googleEvent, _googleCalendarOptions.Value.EventsCalendarId)
+            .Insert(definition.ToGoogleEvent(), _googleCalendarOptions.Value.EventsCalendarId)
             .ExecuteAsync();
 
         return response.Id;

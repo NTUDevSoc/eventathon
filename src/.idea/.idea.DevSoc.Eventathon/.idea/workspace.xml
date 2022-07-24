@@ -22,7 +22,9 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/53aaa3c68bdecefc27714170f47b5e4f9654644cbc36ce6c77f4cb384e4c6dd/BaseClientService.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/649ef811857fbc61d6bbf9273322f28fb54cb196dbbbd35a474eded225a2234d/NpgsqlConnection.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/8271807a61bb8a8540cf6d7a38534480374a4aac934ee4f53d7efdc9aea37ae/IOptions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/8af34fc3e9eea06d9a3e8844a046412495bb4eb0756167ff4318143a6d97f85/GoogleCredential.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9cf8ffb8db155a96bf3935b8be5ab7617fba3ba71bd749f634e183ad755c018/Google.Apis.Calendar.v3.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b9555ec6f75b752790ca6b8c023fd80f3587cc98c2f3db47d8d7e9d9cb5fb/JsonCredentialParameters.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/cba2a6b6e06a7f3ebf36517b70b4f9f33c48e43119b876b71b128dedae6916d4/UserCredential.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/DevSoc.Eventathon.Calendars/Google/GoogleCalendarServiceFactory.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/DevSoc.Eventathon.Calendars/Google/IGoogleCalendarServiceFactory.cs" root0="FORCE_HIGHLIGHTING" />
@@ -109,7 +111,9 @@
       <workItem from="1656812989784" duration="2752000" />
       <workItem from="1657072003672" duration="981000" />
       <workItem from="1658540998501" duration="1518000" />
-      <workItem from="1658613327387" duration="634000" />
+      <workItem from="1658613327387" duration="1873000" />
+      <workItem from="1658625176805" duration="4918000" />
+      <workItem from="1658670611728" duration="4131000" />
     </task>
     <servers />
   </component>
