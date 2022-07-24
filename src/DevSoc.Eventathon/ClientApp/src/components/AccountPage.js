@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import LoginForm from "../forms/LoginForm";
 import SignupForm from "../forms/SignupForm";
 
@@ -11,7 +11,7 @@ export const AccountPage = () => {
                     <h1 className="mt-5 d-flex justify-content-center"><u>Login!</u></h1>
                     <LoginForm />
                 </div>
-                
+
             </div>
 
             <div className="col-md-6 red-form">

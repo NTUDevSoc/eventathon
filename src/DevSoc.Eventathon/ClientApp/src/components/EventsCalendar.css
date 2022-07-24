@@ -1,0 +1,9 @@
+
+/* 
+ * This is a temporary hack to avoid the calendar showing nothing
+ * for the month view when there are no events; we should find
+ * a better solution later.
+ */
+.container .rbc-calendar {
+  height: 70vh;
+}
