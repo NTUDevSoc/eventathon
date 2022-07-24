@@ -26,7 +26,7 @@ export const EventsCalendar = () => {
         (event) => {
             history.push(
                 {
-                    pathname: "/attendance",
+                    pathname: "/attend",
                     state: {
                         givenId: event.id,
                         givenTitle: event.title,
