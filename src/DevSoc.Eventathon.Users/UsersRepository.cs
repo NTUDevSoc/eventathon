@@ -13,14 +13,13 @@ public class UsersRepository : IUsersRepository
         _connectionManager = connectionManager;
     }
     
-    public async Task<List<User>> GetUser(string id)
+    public async Task<User> GetUser(string id)
     {
-        // throw new NotImplementedException();
         using var connection = await _connectionManager.Open();
-        var queryString = "SELECT * FROM public.users WHERE users.username = @idSql";
+        var queryString = "SELECT * FROM public.users WHERE users.username = @id";
         using (connection)
         {
-            return connection.Query<User>(queryString, new { idSql = id}).ToList();
+            return connection.QueryFirstOrDefault<User>(queryString, new { id });
         }
     }
 
@@ -42,13 +41,11 @@ public class UsersRepository : IUsersRepository
     
     public async Task<HashedPasswordResult?> GetHashedPasswordForUser(string username)
     {
-        var userList = await GetUser(username);
-        if (userList is null)
+        var user = await GetUser(username);
+        if (user is null)
         {
             return null;
         }
-
-        var user = userList[0];    
         return new HashedPasswordResult
         {
             HashedPassword = user.HashedPassword,
