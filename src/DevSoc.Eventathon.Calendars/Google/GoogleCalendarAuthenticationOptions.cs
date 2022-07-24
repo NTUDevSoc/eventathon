@@ -1,4 +1,6 @@
-﻿namespace DevSoc.Eventathon.Calendars.Google;
+﻿using ArgumentNullException = System.ArgumentNullException;
+
+namespace DevSoc.Eventathon.Calendars.Google;
 
 public class GoogleCalendarAuthenticationOptions
 {
@@ -8,5 +10,17 @@ public class GoogleCalendarAuthenticationOptions
 
     public string? ImpersonateUser { get; set; }
 
-    public string? CredentialsPath { get; set; }
+    public GoogleCredentialSettings? GoogleCredentialSettings { get; set; }
+
+    public void ThrowIfInvalid()
+    {
+        ArgumentNullException.ThrowIfNull(ApplicationName);
+        ArgumentNullException.ThrowIfNull(ImpersonateUser);
+        ArgumentNullException.ThrowIfNull(GoogleCredentialSettings);
+
+        if (!GoogleCredentialSettings.AreValid)
+        {
+            throw new ArgumentException($"{nameof(GoogleCredentialSettings)} are invalid - maybe you forgot to fill in some of the secrets?");
+        }
+    }
 }
