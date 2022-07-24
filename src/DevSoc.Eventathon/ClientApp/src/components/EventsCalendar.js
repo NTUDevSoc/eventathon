@@ -18,9 +18,9 @@ export const EventsCalendar = () => {
             const description = window.prompt('Enter event description: ')
             
             const id = await createEvent(title, description, start, end);
-            mutate([...events, { id, title, description, start, end }], { rollbackOnError: true });
+            await mutate([...events, { id, title, description, start, end }], { rollbackOnError: true });
         },
-        [mutate]
+        [mutate, events]
     )
 
     const handleSelectEvent = useCallback(
