@@ -5,15 +5,15 @@ namespace DevSoc.Eventathon.Data.Models;
 [Table("public.users")]
 public class User
 {
-    [Column("Id")]
+    [Column("id")]
     public string Id { get; set; } = "";
     
-    [Column("Username")]
+    [Column("username")]
     public string Username { get; set; } = "";
     
-    [Column("HashedPassword")]
+    [Column("hashedPassword")]
     public string HashedPassword { get; set; } = "";
     
-    [Column("Salt")]
+    [Column("salt")]
     public string Salt { get; set; } = "";
 }

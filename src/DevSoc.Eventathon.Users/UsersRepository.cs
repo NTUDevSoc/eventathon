@@ -13,9 +13,14 @@ public class UsersRepository : IUsersRepository
         _connectionManager = connectionManager;
     }
     
-    public Task<User?> GetUser(string id)
+    public async Task<User> GetUser(string id)
     {
-        throw new NotImplementedException();
+        using var connection = await _connectionManager.Open();
+        var queryString = "SELECT * FROM public.users WHERE users.username = @id";
+        using (connection)
+        {
+            return connection.QueryFirstOrDefault<User>(queryString, new { id });
+        }
     }
 
     public async Task<string> CreateUser(User user)
@@ -25,12 +30,12 @@ public class UsersRepository : IUsersRepository
 
         var insertQuery = @"
         INSERT INTO public.users
-        (""Id"", ""Username"", ""HashedPassword"", ""Salt"")
+        (""id"", ""username"", ""hashedPassword"", ""salt"")
         VALUES(@id, @username, @hashedPassword, @salt);";
 
         await connection.ExecuteAsync(insertQuery, user);
         transaction.Commit();
-        
+
         return user.Id;
     }
     
@@ -41,7 +46,6 @@ public class UsersRepository : IUsersRepository
         {
             return null;
         }
-            
         return new HashedPasswordResult
         {
             HashedPassword = user.HashedPassword,

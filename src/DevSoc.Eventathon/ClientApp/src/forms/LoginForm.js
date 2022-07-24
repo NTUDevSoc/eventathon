@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { useUser, login } from "../api/users-endpoints"
 
 export default function LoginForm() {
-    const { register, handleSubmit, errors, setError } = useForm();
+    const { register, handleSubmit, setError, formState: { errors } } = useForm();
     const { data: user } = useUser();
     const [show, setShow] = useState(false)
     const history = useHistory();
@@ -13,13 +13,7 @@ export default function LoginForm() {
         (formValues) => {
             login(formValues.username, formValues.password).then(isLoggedIn => {
                 if (isLoggedIn) {
-                    if (!user) {
-                        // show spinner... redirect to login after some amount of time
-                        setShow(true)
-                    }
-                    else {
-                        history.push('/calendar')
-                    }
+                    history.push('/calendar')
                 } else {
                     setError('auth', { type: 'custom', message: 'Your username or password was incorrect' })
                 }
@@ -32,15 +26,15 @@ export default function LoginForm() {
 
     return (
         <form className="register-form" onSubmit={handleSubmit(onSubmit)}>
-            <input className="form-field" placeholder="Username"
-                {...register("username", { required: true })}
+            <input className="form-field" placeholder="N/T Number"
+                   {...register("username", { required: true })}
             />
             <input className="form-field" placeholder="Password"
                 type="password"
                 {...register("password", { required: true, minLength: 8 })}
             />
-            {/*            {errors.auth && <b>{errors.auth.message}</b>}*/}
             <button type="submit">Login</button>
+            {errors.password && <p> Login unsuccessful</p>}
 
             {show ?
                 <div className="mt-4 d-flex justify-content-center">
@@ -48,8 +42,6 @@ export default function LoginForm() {
                     <span className=" mx-3">Loading...</span>
                 </div> : null
             }
-
-
         </form>
     );
 }
