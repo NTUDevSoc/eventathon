@@ -5,7 +5,7 @@ import { registerAttendance } from '../api/attendance-endpoints';
 export const ConfirmAttendance = () => {
     const history = useHistory();
 
-    const givenId = history.location.state.givenID
+    const givenId = history.location.state.givenId
     const givenTitle = history.location.state.givenTitle
     const givenDescription = history.location.state.givenDescription
     const givenStart = history.location.state.givenStart
