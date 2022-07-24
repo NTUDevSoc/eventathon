@@ -23,16 +23,15 @@ public class GoogleCalendarServiceFactory : IGoogleCalendarServiceFactory
         _googleCalendarApiOptions = googleCalendarApiOptions;
     }
 
-    public async Task<CalendarService> Create()
+    public CalendarService Create()
     {
         var apiOptions = _googleCalendarApiOptions.Value;
         ArgumentNullException.ThrowIfNull(apiOptions);
         
         apiOptions.ThrowIfInvalid();
 
-        using var stream = new MemoryStream();
-        await JsonSerializer.SerializeAsync(stream, apiOptions.GoogleCredentialSettings);
-        var credentials = (await GoogleCredential.FromStreamAsync(stream, CancellationToken.None))
+        var json = JsonSerializer.Serialize(apiOptions.Credentials);
+        var credentials = GoogleCredential.FromJson(json)
             .CreateScoped(_scopes)
             .CreateWithUser(apiOptions.ImpersonateUser);
 
@@ -42,7 +41,4 @@ public class GoogleCalendarServiceFactory : IGoogleCalendarServiceFactory
             ApplicationName = apiOptions.ApplicationName
         });
     }
-
-    private static bool DoCredentialsExist([NotNullWhen(true)] string? credentialsPath) => 
-        !string.IsNullOrEmpty(credentialsPath) && File.Exists(credentialsPath);
 }

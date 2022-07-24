@@ -10,17 +10,17 @@ public class GoogleCalendarAuthenticationOptions
 
     public string? ImpersonateUser { get; set; }
 
-    public GoogleCredentialSettings? GoogleCredentialSettings { get; set; }
+    public GoogleCredentialSettings? Credentials { get; set; }
 
     public void ThrowIfInvalid()
     {
         ArgumentNullException.ThrowIfNull(ApplicationName);
         ArgumentNullException.ThrowIfNull(ImpersonateUser);
-        ArgumentNullException.ThrowIfNull(GoogleCredentialSettings);
+        ArgumentNullException.ThrowIfNull(Credentials);
 
-        if (!GoogleCredentialSettings.AreValid)
+        if (!Credentials.AreValid)
         {
-            throw new ArgumentException($"{nameof(GoogleCredentialSettings)} are invalid - maybe you forgot to fill in some of the secrets?");
+            throw new ArgumentException($"{nameof(Credentials)} are invalid - maybe you forgot to fill in some of the secrets?");
         }
     }
 }

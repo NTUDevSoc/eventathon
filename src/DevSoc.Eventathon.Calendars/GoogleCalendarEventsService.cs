@@ -19,7 +19,7 @@ public class GoogleCalendarEventsService : IEventsService
 
     public async Task<Event?> GetEvent(string id)
     {
-        var calendarService = await _googleCalendarServiceFactory.Create();
+        var calendarService = _googleCalendarServiceFactory.Create();
         var request = calendarService.Events.Get(_googleCalendarOptions.Value.EventsCalendarId, id);
         var @event = await request.ExecuteAsync();
         return Event.FromGoogleEvent(@event);
@@ -27,7 +27,7 @@ public class GoogleCalendarEventsService : IEventsService
 
     public async Task<IList<Event>> GetEvents()
     {
-        var calendarService = await _googleCalendarServiceFactory.Create();
+        var calendarService = _googleCalendarServiceFactory.Create();
         var request = calendarService.Events.List(_googleCalendarOptions.Value.EventsCalendarId);
 
         var events = await request.ExecuteAsync();
@@ -36,7 +36,7 @@ public class GoogleCalendarEventsService : IEventsService
     
     public async Task<string> CreateEvent(EventDefinition definition)
     {
-        var calendarService = await _googleCalendarServiceFactory.Create();
+        var calendarService = _googleCalendarServiceFactory.Create();
         var response = await calendarService.Events
             .Insert(definition.ToGoogleEvent(), _googleCalendarOptions.Value.EventsCalendarId)
             .ExecuteAsync();

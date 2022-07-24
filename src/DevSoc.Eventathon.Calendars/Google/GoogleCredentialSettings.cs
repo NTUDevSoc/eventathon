@@ -1,5 +1,4 @@
 ﻿using System.Text.Json.Serialization;
-using Google.Apis.Auth.OAuth2;
 
 namespace DevSoc.Eventathon.Calendars.Google;
 
@@ -14,7 +13,7 @@ public class GoogleCredentialSettings
     [JsonPropertyName("private_key_id")]
     public string? PrivateKeyId { get; set; }
     
-    [JsonPropertyName("private_key_id")]
+    [JsonPropertyName("private_key")]
     public string? PrivateKey { get; set; }
     
     [JsonPropertyName("client_email")]
