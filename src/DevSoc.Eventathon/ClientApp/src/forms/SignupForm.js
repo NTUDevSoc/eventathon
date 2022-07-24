@@ -1,6 +1,6 @@
-﻿import React, {useCallback} from "react";
+﻿import React, { useCallback } from "react";
 import { useForm } from "react-hook-form";
-import {createUser} from "../api/events-endpoint";
+import { createUser } from "../api/users-endpoints"
 
 export default function SignupForm() {
 
@@ -26,13 +26,13 @@ export default function SignupForm() {
                    {...register("username", { required: true })}
             />
             <input className="form-field" placeholder="Password"
-                   type="password"
-                   {...register("password", { required: true, minLength: 8 })}
+                type="password"
+                {...register("password", { required: true, minLength: 8 })}
             />
             {errors.password && <p> Password must contain more than seven characters</p>}
-    
+            
             <input className="form-field" placeholder="Display name"
-                   {...register("displayName", { required: true})}
+                {...register("displayName", { required: true })}
             />
             <button type="submit">Submit</button>
         </form>

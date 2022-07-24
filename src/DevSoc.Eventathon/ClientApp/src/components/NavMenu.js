@@ -16,19 +16,13 @@ export const NavMenu = () => {
           <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!isNavbarCollapsed} navbar>
             <ul className="navbar-nav flex-grow">
               <NavItem>
-                <NavLink tag={Link} className="text-dark" to="/">Home</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink tag={Link} className="text-dark" to="/counter">Counter</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink tag={Link} className="text-dark" to="/calendar">Calendar</NavLink>
+                <NavLink tag={Link} className="text-dark" to="/">Calendar</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink tag={Link} className="text-dark" to="/healthCheck">Check Health</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink tag={Link} className="text-dark" to="/userEvents">My Events</NavLink>
+                <NavLink tag={Link} className="text-dark" to="/your-events">My Events</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink tag={Link} className="text-dark" to="/account">Account</NavLink>
