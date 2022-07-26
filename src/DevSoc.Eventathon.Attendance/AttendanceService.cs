@@ -1,12 +1,30 @@
-﻿using DevSoc.Eventathon.Calendars.Models;
+﻿using Dapper;
+using DevSoc.Eventathon.Attendance;
+using DevSoc.Eventathon.Calendars.Models;
 
-namespace DevSoc.Eventathon.Attendance;
+namespace DevSoc.Eventathon.Data;
 
 public class AttendanceService : IAttendanceService
 {
-    public void RegisterAttendance(AttendanceDefinition definition)
+    private readonly IConnectionManager _connectionManager;
+
+    public AttendanceService(IConnectionManager connectionManager)
     {
-        Console.WriteLine(definition.EventId);
+        _connectionManager = connectionManager;
+    }
+    
+    public async void RegisterAttendance(AttendanceDefinition attendanceData)
+    {
+        using var connection = await _connectionManager.Open();
+        using var transaction = connection.BeginTransaction();
+
+        var insertQuery = @"
+        INSERT INTO public.attendance
+        (""user_id"", ""event_id"")
+        VALUES(@UserId, @EventId);";
+
+        await connection.ExecuteAsync(insertQuery, attendanceData);
+        transaction.Commit();
     }
 }
 

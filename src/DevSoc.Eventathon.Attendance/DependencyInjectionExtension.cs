@@ -1,4 +1,5 @@
-﻿namespace DevSoc.Eventathon.Attendance;
+﻿using DevSoc.Eventathon.Data;
+namespace DevSoc.Eventathon.Attendance;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 public static class DependencyInjectionExtension

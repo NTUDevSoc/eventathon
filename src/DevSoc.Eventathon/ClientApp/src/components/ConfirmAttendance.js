@@ -14,6 +14,7 @@ export const ConfirmAttendance = () => {
     const SendAttendance = async () => {
         const mockUserId = 107;
         await registerAttendance(mockUserId, givenId);
+        history.push('/');
     }
 
     return (
