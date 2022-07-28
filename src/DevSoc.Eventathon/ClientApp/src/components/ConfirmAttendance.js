@@ -12,7 +12,7 @@ export const ConfirmAttendance = () => {
     const givenEnd = history.location.state.givenEnd
 
     const SendAttendance = async () => {
-        const mockUserId = 107;
+        const mockUserId = '107';
         await registerAttendance(mockUserId, givenId);
         history.push('/');
     }

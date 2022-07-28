@@ -20,4 +20,11 @@ public class AttendanceController : ControllerBase
         _attendanceService.RegisterAttendance(definition);
         return Task.FromResult<IActionResult>(new OkResult());
     }
+    
+    [HttpGet("api/attendingEvents")]
+    public async Task<IActionResult> GetAttendingEvents([FromRoute] string userId)
+    {
+        var events = await _attendanceService.GetAttendingEvents(userId);
+        return Ok(events);
+    }
 }
