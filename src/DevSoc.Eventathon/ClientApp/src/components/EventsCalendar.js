@@ -16,8 +16,10 @@ export const EventsCalendar = () => {
         async ({ start, end }) => {
             const title = window.prompt('Enter event name: ')
             const description = window.prompt('Enter event description: ')
-            const id = await createEvent(title, description, start, end);
-            await mutate([...events, { id, title, description, start, end }], { rollbackOnError: true });
+            if (title) {
+                const id = await createEvent(title, description, start, end);
+                await mutate([...events, { id, title, description, start, end }], { rollbackOnError: true });
+            }
         },
         [mutate, events]
     )
