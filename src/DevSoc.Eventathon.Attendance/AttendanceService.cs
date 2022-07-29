@@ -23,4 +23,9 @@ public class AttendanceService : IAttendanceService
 
         _attendanceRepository.RegisterAttendance(attendanceData);
     }
+
+    public async Task<List<string>> GetAttendingEvents(string userId)
+    {
+        return await _attendanceRepository.GetAttendingEvents(userId);
+    }
 }
