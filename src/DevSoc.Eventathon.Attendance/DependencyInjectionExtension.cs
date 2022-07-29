@@ -4,8 +4,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 public static class DependencyInjectionExtension
 {
-    public static IServiceCollection AddAttendance(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddAttendance(this IServiceCollection services)
     {
-        return services.AddSingleton<IAttendanceService, AttendanceService>();
+        return services
+            .AddTransient<IAttendanceRepository, AttendanceRepository>()
+            .AddSingleton<IAttendanceService, AttendanceService>();
     }
 }

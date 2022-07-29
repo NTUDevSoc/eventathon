@@ -1,40 +1,26 @@
-﻿using Dapper;
-using DevSoc.Eventathon.Attendance;
+﻿using DevSoc.Eventathon.Attendance.Models;
 using DevSoc.Eventathon.Calendars.Models;
 
-namespace DevSoc.Eventathon.Data;
+namespace DevSoc.Eventathon.Attendance;
 
 public class AttendanceService : IAttendanceService
 {
-    private readonly IConnectionManager _connectionManager;
+    private readonly IAttendanceRepository _attendanceRepository;
 
-    public AttendanceService(IConnectionManager connectionManager)
+    public AttendanceService(IAttendanceRepository attendanceRepository)
     {
-        _connectionManager = connectionManager;
-    }
-    
-    public async void RegisterAttendance(AttendanceDefinition attendanceData)
-    {
-        using var connection = await _connectionManager.Open();
-        using var transaction = connection.BeginTransaction();
-
-        const string insertQuery = @"
-        INSERT INTO public.attendance
-        (""user_id"", ""event_id"")
-        VALUES(@UserId, @EventId);";
-
-        await connection.ExecuteAsync(insertQuery, attendanceData);
-        transaction.Commit();
+        _attendanceRepository = attendanceRepository;
     }
 
-    public async Task<List<string>> GetAttendingEvents(string userId)
+
+    public void RegisterAttendance(AttendanceDefinition definition)
     {
-        using var connection = await _connectionManager.Open();
-        const string query = "SELECT attendance.event_id FROM public.attendance WHERE attendance.user_id = @userId";
-        using (connection)
+        var attendanceData = new AttendanceData
         {
-            return connection.Query<string>(query, new { userId }).ToList();
-        }
+            UserId = definition.UserId,
+            EventId = definition.EventId
+        };
+
+        _attendanceRepository.RegisterAttendance(attendanceData);
     }
 }
-

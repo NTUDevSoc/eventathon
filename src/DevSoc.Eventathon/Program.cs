@@ -15,7 +15,7 @@ internal class Program
             .AddDatabase(builder.Configuration)
             .AddUsers(builder.Configuration)
             .AddEvents(builder.Configuration)
-            .AddAttendance(builder.Configuration);
+            .AddAttendance();
 
         var app = builder.Build();
 
