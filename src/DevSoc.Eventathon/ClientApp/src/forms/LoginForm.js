@@ -13,7 +13,7 @@ export default function LoginForm() {
         (formValues) => {
             login(formValues.username, formValues.password).then(isLoggedIn => {
                 if (isLoggedIn) {
-                    history.push('/calendar')
+                    history.push('/')
                 } else {
                     setError('auth', { type: 'custom', message: 'Your username or password was incorrect' })
                 }

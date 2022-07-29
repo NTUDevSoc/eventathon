@@ -31,6 +31,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\DevSoc.Eventathon.Attendance\DevSoc.Eventathon.Attendance.csproj" />
       <ProjectReference Include="..\DevSoc.Eventathon.Calendars\DevSoc.Eventathon.Calendars.csproj" />
       <ProjectReference Include="..\DevSoc.Eventathon.Users\DevSoc.Eventathon.Users.csproj" />
     </ItemGroup>

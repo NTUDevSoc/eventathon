@@ -1,5 +1,6 @@
 using DevSoc.Eventathon.Calendars;
 using DevSoc.Eventathon.Data;
+using DevSoc.Eventathon.Attendance;
 
 namespace DevSoc.Eventathon;
 
@@ -9,12 +10,13 @@ internal class Program
     {
         var builder = WebApplication.CreateBuilder(args);
         builder.Services.AddControllers();
-        
+
         builder.Services
             .AddDatabase(builder.Configuration)
             .AddUsers(builder.Configuration)
-            .AddEvents(builder.Configuration);
-        
+            .AddEvents(builder.Configuration)
+            .AddAttendance();
+
         var app = builder.Build();
 
         if (!app.Environment.IsDevelopment())
