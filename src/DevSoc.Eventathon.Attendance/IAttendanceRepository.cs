@@ -5,7 +5,7 @@ using DevSoc.Eventathon.Calendars.Models;
 
 public interface IAttendanceRepository
 {
-    void RegisterAttendance(AttendanceData definition);
+    Task RegisterAttendance(AttendanceData definition);
     Task<List<string>> GetAttendingEvents(string userId);
     
 }

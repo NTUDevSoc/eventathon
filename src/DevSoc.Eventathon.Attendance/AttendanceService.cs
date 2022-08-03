@@ -13,7 +13,7 @@ public class AttendanceService : IAttendanceService
     }
 
 
-    public void RegisterAttendance(AttendanceDefinition definition)
+    public async Task RegisterAttendance(AttendanceDefinition definition)
     {
         var attendanceData = new AttendanceData
         {
@@ -21,7 +21,7 @@ public class AttendanceService : IAttendanceService
             EventId = definition.EventId
         };
 
-        _attendanceRepository.RegisterAttendance(attendanceData);
+        await _attendanceRepository.RegisterAttendance(attendanceData);
     }
 
     public async Task<List<string>> GetAttendingEvents(string userId)

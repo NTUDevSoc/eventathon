@@ -3,7 +3,7 @@ namespace DevSoc.Eventathon.Attendance;
 
 public interface IAttendanceService
 {
-    void RegisterAttendance(AttendanceDefinition definition);
+    Task RegisterAttendance(AttendanceDefinition definition);
     Task<List<string>> GetAttendingEvents(string userId);
 }
 

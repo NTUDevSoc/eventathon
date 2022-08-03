@@ -14,7 +14,7 @@ public class AttendanceRepository : IAttendanceRepository
         _connectionManager = connectionManager;
     }
     
-    public async void RegisterAttendance(AttendanceData attendanceData)
+    public async Task RegisterAttendance(AttendanceData attendanceData)
     {
         using var connection = await _connectionManager.Open();
         using var transaction = connection.BeginTransaction();
