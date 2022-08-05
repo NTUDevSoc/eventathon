@@ -21,7 +21,7 @@ public class AttendanceController : ControllerBase
         return Task.FromResult<IActionResult>(new OkResult());
     }
     
-    [HttpGet("api/attendingEvents")]
+    [HttpGet("api/attendingEvents/{userId}")]
     public async Task<IActionResult> GetAttendingEvents([FromRoute] string userId)
     {
         var events = await _attendanceService.GetAttendingEvents(userId);
