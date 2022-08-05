@@ -20,6 +20,10 @@
       <EmbeddedResource Include="Migrations\Script0001-AddUsers.sql">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </EmbeddedResource>
+      <None Remove="Migrations\Script0002-Attendance.sql" />
+      <EmbeddedResource Include="Migrations\Script0002-Attendance.sql">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </EmbeddedResource>
     </ItemGroup>
 
 </Project>

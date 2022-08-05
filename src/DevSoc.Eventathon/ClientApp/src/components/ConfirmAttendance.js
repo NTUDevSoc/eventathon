@@ -11,9 +11,10 @@ export const ConfirmAttendance = () => {
     const givenStart = history.location.state.givenStart
     const givenEnd = history.location.state.givenEnd
 
-    const SendAttendance = async (eventId) => {
-        const mockUserId = 107;
-        await registerAttendance(mockUserId, eventId);
+    const SendAttendance = async () => {
+        const mockUserId = '107';
+        await registerAttendance(mockUserId, givenId);
+        history.push('/');
     }
 
     return (
