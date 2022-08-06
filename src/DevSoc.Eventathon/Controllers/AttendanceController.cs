@@ -15,10 +15,10 @@ public class AttendanceController : ControllerBase
     }
     
     [HttpPost("api/attendance")]
-    public Task<IActionResult> ConfirmAttendance([FromBody] AttendanceDefinition definition)
+    public async Task<IActionResult> ConfirmAttendance([FromBody] AttendanceDefinition definition)
     {
-        _attendanceService.RegisterAttendance(definition);
-        return Task.FromResult<IActionResult>(new OkResult());
+        await _attendanceService.RegisterAttendance(definition);
+        return Ok();
     }
     
     [HttpGet("api/attendingEvents/{userId}")]
