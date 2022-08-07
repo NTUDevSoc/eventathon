@@ -1,7 +1,6 @@
 ﻿using Dapper;
 using DevSoc.Eventathon.Attendance;
 using DevSoc.Eventathon.Attendance.Models;
-using DevSoc.Eventathon.Calendars.Models;
 
 namespace DevSoc.Eventathon.Data;
 
