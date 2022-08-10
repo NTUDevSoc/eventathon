@@ -30,10 +30,20 @@ code {
 }
 
 .right-side {
-  height: 100vh;
+  height: 100%;
   width: 100%;
 }
 
 .red-form {
   background-color: palevioletred;
+}
+
+.red-form:before {
+  content:"";
+  background-color: palevioletred;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 50%;
+  z-index: -1;
 }

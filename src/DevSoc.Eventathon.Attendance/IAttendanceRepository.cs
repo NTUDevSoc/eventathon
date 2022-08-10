@@ -1,7 +1,6 @@
 ﻿using DevSoc.Eventathon.Attendance.Models;
 
 namespace DevSoc.Eventathon.Attendance;
-using DevSoc.Eventathon.Calendars.Models;
 
 public interface IAttendanceRepository
 {
