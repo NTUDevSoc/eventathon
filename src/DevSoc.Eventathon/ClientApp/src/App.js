@@ -6,7 +6,7 @@ import { Layout } from './components/Layout';
 import { EventsCalendar } from './components/EventsCalendar';
 import { HealthCheck } from './components/HealthCheck';
 import { UsersEvents } from './components/UsersEvents';
-import { ConfirmAttendance } from "./components/ConfirmAttendance";
+import { ConfirmAttendance } from "./components/ConfirmAttendance.tsx";
 import { AccountPage } from "./components/AccountPage";
 
 
